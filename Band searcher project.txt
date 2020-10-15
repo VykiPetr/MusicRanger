@@ -1,0 +1,97 @@
+MusicRanger
+
+color scheme
+
+#fcfcfc
+#36031f
+#6a1127
+#9e1f2f
+#d32d38
+
+
+
+
+
+###Login
+User enters their
+
+Email
+Password
+
+###Signup
+Basic login info//edit profile and add details after login
+
+UserName
+Email
+Password
+
+###Logout
+go to home page, delete session
+
+### Profile page### Available when logged in
+Edit capability
+
+Profile picture
+
+Description
+
+Location
+
+Main Genre
+
+other genres
+
+Main role
+
+other roles
+
+Button for Looking or Not looking for band
+
+// band links //
+.............  edit/delete
+.............  edit/delete
+
+### Create band ###Available when logged in
+
+Band name
+
+Band picture
+
+Band description
+	we band, have guitar, drum look for bass
+
+Band location
+
+Band structure
+	Bassis: looking for// edit/delete
+	Drums: looking for// edit/delete
+					or set
+	/add member +/
+	choose role, choose availability
+Band genre
+
+Band subgenre
+
+###Listings
+Button//For// Looking or Not looking for band
+
+//
+Search bar
+//  Role, location, genre, chckbox//show bands, chckbox//show people
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
