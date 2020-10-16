@@ -43,45 +43,107 @@ Homepage
 
 - GET / 
   - renders the homepage
+
 - GET /auth/signup
   - redirects to / if user logged in
-  - renders the signup form (with flash msg)
+  - renders the signup form 
+
 - POST /auth/signup
   - redirects to / if user logged in
   - body:
     - username
     - email
     - password
+
 - GET /auth/login
   - redirects to / if user logged in
-  - renders the login form (with flash msg)
+  - renders the login form 
+
 - POST /auth/login
   - redirects to / if user logged in
   - body:
-    - username
+    - email
     - password
+
 - POST /auth/logout
   - body: (empty)
 
-- GET /events
-  - renders the event list + the create form
-- POST /events/create 
-  - redirects to / if user is anonymous
-  - body: 
-    - name
-    - date
-    - location
-    - description
-- GET /events/:id
-  - renders the event detail page
-  - includes the list of attendees
-  - attend button if user not attending yet
-- POST /events/:id/attend 
-  - redirects to / if user is anonymous
-  - body: (empty - the user is already stored in the session)
+- GET /dashboard (private?)
+  - renders the profile layout with username added. 
+  - buttons link to view and edit pages.
+
+- GET /viewProfile/userid (public?)
+  - renders view of current profile taken from usermodel
+  - send message redirects to /sendMessage
+
+- GET /editProfile/userid (private?)
+ - renders profile layout in form
+ - save button returns to /dashboard
+
+- POST /editProfile/userid (private?)
+ - body: 
+   - add image
+   - description
+   - main role
+   - sub role
+   - main genre
+   - sub-genre
+   - facebook url
+   - instagram url 
+   - youtube url
+   - soundcloud url
+   - spotify url
+   - country 
+   - city
+
+-GET /myBands/userid (private)
+ - renders list of bands user is a member of
+ - edit button takes user to edit page of that band
+
+-GET /add-editBand/bandid
+ - renders band profile layout in form
+ - save button returns to /dashboard(?)
+
+-POST /add-editBand/bandid
+ - body: 
+   - band name
+   - band country
+   - band city
+   - band image
+   - band description
+   - add/delete member
+
+- GET /viewBandProfile/bandid (public?)
+  - renders view of current profile
+  - send message redirects to /sendMessage
+
+-GET /viewMessages/userid
+ - renders messages sent and received 
+ - reply redirects to /sendMessage
+
+-GET /sendMessage  (cant send messages unless signed up and logged in)
+ - renders message layout form(?)
+ 
+-POST /sendMessage (cant send messages unless signed up and logged in)
+ - body: 
+   - from (user id/username)
+   - to (user id/username)
+   - message body (limit characters?)
+   - timestamp
 
 
-## Models
+-GET /listings/all  (public)
+ - renders full list of musicians and bands
+ - clicking on any profile will redirect to signup page
+
+-POST /listings/musicians 
+ -renders list of musicians based on search criteria
+
+-POST /listings/bands
+ -renders list of bands based on search criteria (i.e looking for/location) 
+
+
+ ## Models
 
 User model
  
