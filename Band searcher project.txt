@@ -9,21 +9,22 @@ color scheme
 #d32d38
 
 
-
-
+###Landing
+/Login
+/SignUp
+/ViewListings
 
 ###Login
 User enters their
-
-Email
-Password
+/Email
+/Password
 
 ###Signup
 Basic login info//edit profile and add details after login
 
-UserName
-Email
-Password
+/UserName
+/Email
+/Password
 
 ###Logout
 go to home page, delete session
@@ -31,27 +32,102 @@ go to home page, delete session
 ### Profile page### Available when logged in
 Edit capability
 
-Profile picture
+UserModel:
+	username: {
+		required: true,
+		unique: true,
+		type: String
+	},
+	password: {
+		required: true
+		type: String ///Hashed
+	},
+	email: {
+		unique: true,
+		required: true,
+		type: String,
+	},
+	img: String,
+	description: String,
+	Country: {
+		type: String,
+		enum: allCountries
+		}
+	City: String,    
+	mainGenre: {
+		type: String
+		enum: allGenre
+		}
+	subGenre: String,
+	mainrole: {
+		type: String,
+		enum: allRoles
+		}
+	subRole: String,
+	faceebokurl: String,
+	instagramurl: String,
+	youtubeurl: String,
+	soundcloudurl: String,
+	spotifyurl: String,
+	bandurllinks: [innerband_id, innerband_id, innerband_id],
+	listed: true/default false
 
-Description
 
-Location
+UserName: //present after signup, everything else is not mandatory to fill in 
 
-Main Genre
+Profile picture:
 
-other genres
+Description:
+		
+country:   //Drop down menu
+city:      //Type in with suggest
 
-Main role
+Main Genre:
 
-other roles
+other genres:
 
-Button for Looking or Not looking for band
+Main role:
 
+other roles:
+
+Button for Looking or Not looking for band // change listed value to true
+
+
+Get bands from the BandModel collection which ones you are a part of and makes a list
 // band links //
-.............  edit/delete
-.............  edit/delete
+............. 
+............. 
 
 ### Create band ###Available when logged in
+//How to disclose who is owner
+
+BandModel:
+	bandName: {
+		required: true,
+		unique: true,
+		type: String
+	},
+	img: String,
+	description: String,
+	Country: {
+		type: String,
+		enum: allCountry
+		},
+	City: String,
+	bandstructure:[{name: {type: String}, profile_id: {type:mongoose._id}, role: {type: String, enum: allRoles}},]
+			  
+	bandlookingfor: [{type: String
+			 enum: roleList}, ]
+	mainGenre: {
+		type: String,
+		enum: allRoles
+		}
+	subGenre: String,
+	
+	
+
+
+
 
 Band name
 
@@ -60,15 +136,22 @@ Band picture
 Band description
 	we band, have guitar, drum look for bass
 
-Band location
+Band location//add google API to show it on map
 
-Band structure
-	Bassis: looking for// edit/delete
-	Drums: looking for// edit/delete
+Band structure: 
+		Ross Drummer		/delete/
+		Jorge prflLink Bassist  /delete/
+		/add member +/ takes you to a form for name
+
+Band is looking for
+		Bassist  btnDelete
+		drummer	 btnDelete
+		vocals   btnDelete
+
 					or set
-	/add member +/
-	choose role, choose availability
-Band genre
+	/add query +/
+	choose role.
+Band genre 
 
 Band subgenre
 
@@ -79,9 +162,66 @@ Button//For// Looking or Not looking for band
 Search bar
 //  Role, location, genre, chckbox//show bands, chckbox//show people
 
+looking at listing//Be able to see a map of where the listings are placed by using google api
+
+###View Musician profile
+send message
+
+See their username //what is disclosed
+	picture
+	description
+	main genre
+	sub genre
+	main role
+	sub role
+	location  //view on map
 
 
 
+
+
+###View Band profile view
+send message to owner
+
+
+collect mails
+	Mail model:::
+	#############
+	_id:
+	1stowner: [_id of user]         ] or either do owners: [_id of user,_id of owner ]
+	2ndowner: _id of other user	]
+	subject : Ross and Vykintas // decide on structure of converstation
+	conv: [{
+	name: Ross
+	Date: 2020-15-20 15:53
+	message: (b)
+	},
+	..
+	..
+	..
+	]
+	,
+	_id: 
+	whosmailbox: _id of user
+	id: Ross and St Mary
+	
+
+
+
+############Backlog############
+
+Make usable on phones
+
+Make availabe/unabailable dates on profile to choose dates for when you are available
+
+Be able to rate/like/comment on bands/venues
+
+blocking/reporting users
+
+messaging system inbetween users// need schema/model for a message// deleting the messages
+message model: timestamp, from who, to who, body.
+
+Adding a way of putting up listings for a venue/person/event that is looking for a band/musician(also adding a way for musicians to search for it)
 
 
 
