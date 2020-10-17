@@ -76,11 +76,11 @@ Homepage
   - renders view of current profile taken from usermodel
   - send message redirects to /sendMessage
 
-- GET /editProfile/userid (private?)
+- GET /editProfile (private?)
  - renders profile layout in form
  - save button returns to /dashboard
 
-- POST /editProfile/userid (private?)
+- POST /editProfile (private?)
  - body: 
    - add image
    - description
@@ -96,15 +96,15 @@ Homepage
    - country 
    - city
 
--GET /myBands/userid (private)
+-GET /myBands (private)
  - renders list of bands user is a member of
  - edit button takes user to edit page of that band
 
--GET /add-editBand/bandid
+-GET /add-editBand
  - renders band profile layout in form
  - save button returns to /dashboard(?)
 
--POST /add-editBand/bandid
+-POST /add-editBand
  - body: 
    - band name
    - band country
@@ -117,7 +117,7 @@ Homepage
   - renders view of current profile
   - send message redirects to /sendMessage
 
--GET /viewMessages/userid
+-GET /viewMessages
  - renders messages sent and received 
  - reply redirects to /sendMessage
 
@@ -136,10 +136,10 @@ Homepage
  - renders full list of musicians and bands
  - clicking on any profile will redirect to signup page
 
--POST /listings/musicians 
+-GET /listings/musicians 
  -renders list of musicians based on search criteria
 
--POST /listings/bands
+-GET /listings/bands
  -renders list of bands based on search criteria (i.e looking for/location) 
 
 

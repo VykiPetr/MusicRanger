@@ -94,11 +94,13 @@ router.post('/login', (req, res) => {
 
 router.get('/dashboard', (req, res) => {
     if (!req.session.loggedInUser) {
-        res.status(500).render('/', {message: 'Please sign up or login'})
+        res.status(500).render('index.hbs', {message: 'Please sign up or login'})
     }
     let loggedInUser = req.session.loggedInUser
     res.render('profiles/dashboard', {loggedInUser})
 })
+
+
 
 
 module.exports = router;
