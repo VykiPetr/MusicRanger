@@ -1,1 +1,10 @@
 <div>Welcome to your dashboard {{loggedInUser.username}}</div>
+<div>
+    <div>
+        <img style="width: 100px"src={{loggedInUser.img}} alt="">
+        <h2>{{loggedInUser.username}}</h2>
+    </div>
+    <div>
+        <a href="/updateProfile"><button>Update Profile</button></a>
+    </div>
+</div>
