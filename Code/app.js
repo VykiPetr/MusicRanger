@@ -71,5 +71,7 @@ app.use('/', authRoutes);
 const profileRoutes = require('./routes/profileRoutes');
 app.use('/', profileRoutes);
 
+const listingRoutes = require('./routes/listingRoutes');
+app.use('/', listingRoutes);
 
 module.exports = app;

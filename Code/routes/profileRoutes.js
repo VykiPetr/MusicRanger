@@ -11,6 +11,7 @@ router.get('/dashboard', (req, res) => {
     let loggedInUser = req.session.loggedInUser
     userDetailsModel.findOne({userrefid: loggedInUser._id})
                 .then((detailsData)=>{
+                    console.log(loggedInUser,detailsData)
                     res.render('profiles/dashboard', {loggedInUser, detailsData})
                 })
                 .catch((err)=>console.log('error in dasborad userDetailsModel.findOne ', err))
@@ -35,7 +36,7 @@ router.get('/updateProfile', (req, res) =>{
 router.post('/updateProfile', (req, res)=>{
     let userId = req.session.loggedInUser._id
     let {username,  img, mainGenre,  mainRole,  country,  listed} = req.body
-    let {description, subGenre, subRole, city, facebookurl, instagamurl, youtubeurl,soundcloudurl, spotifyurl} = req.body
+    let {description, subGenre, subRole, city, facebookurl, instagramurl, youtubeurl,soundcloudurl, spotifyurl} = req.body
     if (listed) {
         listed = true
     } else {
@@ -43,7 +44,7 @@ router.post('/updateProfile', (req, res)=>{
     }
     userModel.findByIdAndUpdate(userId, {username,  img, mainGenre,  mainRole,  country,  listed})
         .then((userData)=>{
-            userDetailsModel.findOneAndUpdate({userrefid: userId}, {description, subGenre, subRole, city, facebookurl, instagamurl, youtubeurl,soundcloudurl, spotifyurl})
+            userDetailsModel.findOneAndUpdate({userrefid: userId}, {description, subGenre, subRole, city, facebookurl, instagramurl, youtubeurl,soundcloudurl, spotifyurl})
             .then(()=>{
                 req.session.loggedInUser = userData
                 res.redirect('/dashboard')
