@@ -9,8 +9,11 @@ router.get('/dashboard', (req, res) => {
         res.status(500).render('index.hbs', {message: 'Please sign up or login'})
     }
     let loggedInUser = req.session.loggedInUser
-    res.render('profiles/dashboard', {loggedInUser})
-    console.log(loggedInUser)
+    userDetailsModel.findOne({userrefid: loggedInUser._id})
+                .then((detailsData)=>{
+                    res.render('profiles/dashboard', {loggedInUser, detailsData})
+                })
+                .catch((err)=>console.log('error in dasborad userDetailsModel.findOne ', err))
 })
 
 router.get('/updateProfile', (req, res) =>{
@@ -19,7 +22,7 @@ router.get('/updateProfile', (req, res) =>{
     userModel.findById(userId)
         .then((userDataMain)=>{
             console.log('usermodel main data: ', userDataMain)
-            userDetailsModel.findById(userId)
+            userDetailsModel.findOne({userrefid: userId})
                 .then((detailsData)=>{
                     console.log('details model data: ', detailsData)
                     res.render('profiles/updateProfile', {userDataMain, detailsData})
@@ -40,11 +43,12 @@ router.post('/updateProfile', (req, res)=>{
     }
     userModel.findByIdAndUpdate(userId, {username,  img, mainGenre,  mainRole,  country,  listed})
         .then((userData)=>{
-            userDetailsModel.findByIdAndUpdate(userId, {description, subGenre, subRole, city, facebookurl, instagamurl, youtubeurl,soundcloudurl, spotifyurl})
+            userDetailsModel.findOneAndUpdate({userrefid: userId}, {description, subGenre, subRole, city, facebookurl, instagamurl, youtubeurl,soundcloudurl, spotifyurl})
             .then(()=>{
                 req.session.loggedInUser = userData
                 res.redirect('/dashboard')
             })
+            .catch((err)=>console.log('error in post update profile detaismodel findby id, ', err))
         })
     // console.log(req.body)
 })
