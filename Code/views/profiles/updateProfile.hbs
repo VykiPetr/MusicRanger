@@ -43,7 +43,7 @@
     <input name="spotifyurl" type="text" placeholder="" value="{{detailsData.spotifyurl}}">
 
     <label>List or unlist yourself from the listings</label>
-    <input name="listed" type="checkbox" {{bindAttr checked="{{userDataMain.listed}}"}}>
+    <input name="listed" type="checkbox" {{#if userDataMain.listed}}checked{{else}}unchecked{{/if}}>
     {{!-- {{#if (userDataMain.listed)}}unchecked{{else}}checked{{/if}} --}}
     <button type="submit">Update</button>
 </form>

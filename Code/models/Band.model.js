@@ -8,17 +8,18 @@ const bandSchema = new mongoose.Schema({
     },
     img: String,
     description: String,
-    Country: {
+    country: {
         type: String,
         // enum: allCountry
     },
-    City: String,
+    city: String,
     bandstructure: [{
         name: {
             type: String
         },
-        profile_id: {
-            type: mongoose._id
+        profileId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'user'
         },
         role: {
             type: String,
