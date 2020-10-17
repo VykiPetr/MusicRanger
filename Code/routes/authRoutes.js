@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs')
 const userModel = require('../models/User.model');
-const UserModel = require('../models/User.model');
+const userDetailsModel = require('../models/UserDetails.model')
+
 
 router.get('/signup', (req, res) => {
     res.render('auth/signup.hbs')
@@ -36,8 +37,11 @@ router.post('/signup', (req, res) => {
                                         email: email,
                                         password: hashedPassword
                                     })
-                                    .then(() => {
-                                        res.redirect('/')
+                                    .then((userData) => {
+                                        userDetailsModel.create({userrefid:userData._id})
+                                            .then(()=>{
+                                                res.redirect('/')
+                                            })
                                     })
                                     .catch(() => {
                                         console.log('error in UserModel.Create')
@@ -73,7 +77,7 @@ router.post('/login', (req, res) => {
         return;
     }
 
-    UserModel.findOne({email:email})
+    userModel.findOne({email:email})
        .then((userData)=>{
         if (!userData) {
             res.status(500).render('auth/login', {message: 'User does not eist'})
@@ -92,12 +96,11 @@ router.post('/login', (req, res) => {
        })
 })
 
-router.get('/dashboard', (req, res) => {
-    if (!req.session.loggedInUser) {
-        res.status(500).render('index.hbs', {message: 'Please sign up or login'})
-    }
-    let loggedInUser = req.session.loggedInUser
-    res.render('profiles/dashboard', {loggedInUser})
+
+
+router.get('/logout', (req, res)=>{
+    req.session.destroy()
+    res.render('auth/login.hbs', {message: 'logged out succesfully'})
 })
 
 

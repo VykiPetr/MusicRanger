@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema(
 		type: String,
 	},
 	img: String,
-	Country: {
+	country: {
 		type: String,
 		// enum: allCountries
 		},
@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema(
 		type: String,
 		// enum: allGenre,
 		},
-	mainrole: {
+	mainRole: {
 		type: String,
 		// enum: allRoles,
 		},

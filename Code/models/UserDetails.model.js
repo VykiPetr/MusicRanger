@@ -2,15 +2,15 @@ const mongoose = require('mongoose')
 
 const userDetailSchema = new mongoose.Schema(
     {
-    userrefid = {
+    userrefid: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
     },
 	description: String,
-	City: String,    
+	city: String,    
 	subGenre: String,
 	subRole: String,
-	faceebokurl: String,
+	facebookurl: String,
 	instagramurl: String,
 	youtubeurl: String,
 	soundcloudurl: String,
