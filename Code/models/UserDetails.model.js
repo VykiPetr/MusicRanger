@@ -15,7 +15,12 @@ const userDetailSchema = new mongoose.Schema(
 	youtubeurl: String,
 	soundcloudurl: String,
 	spotifyurl: String,
-	bandurllinks: [],
+	bandurllinks: [
+		{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'band'
+		}
+	],
     })
 
     module.exports =  mongoose.model('userDetail', userDetailSchema)

@@ -1,4 +1,4 @@
-<form id="update-form" method="POST" action="/createBand">
+<form id="update-form" method="POST" action="/editBand">
 
     <label>Band name</label>
     <input name="bandName" type="text">
@@ -21,6 +21,14 @@
 
     <label>City</label>
     <input name="city" type="text">
+
+    <h3>Add a band member</h3>
+
+
+    <a href="/manageBands/{{this._id}}/addMember"><button type="button">Add a band member</button></a>
+
+    <h3>Who is your band looking for?</h3>
+    <a href="/manageBands/{{this._id}}/addMissing"><button type="button">Add a missing spot</button></a>
 
     <button type="submit">Create a band</button>
 </form>
