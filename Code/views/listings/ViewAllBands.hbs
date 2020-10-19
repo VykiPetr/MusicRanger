@@ -1,12 +1,12 @@
 <div>
-    <form action="/searchMusiciansResults" method="GET">
+<form action="/searchResultsBands" method="GET">
   <label for="">Genre</label>
   <input type="text" name="mainGenre" id="">
-  <label for="">Role</label>
-  <input type="text" name="mainRole" id="">
+  <label for="">Band Looking for</label>
+  <input type="text" name="bandlookingfor" id="">
   <label for="">Country</label>
   <input type="text" name="country" id="">
-  <label for="">Country</label>
+  <label for="">City</label>
   <input type="text" name="city" id="">
   
   <button type="submit">Search Musicians</button>
@@ -14,23 +14,18 @@
 
 </div>
 
-
-
-
-
-
-{{#each user}}
+{{#each band}}
 
 <div>
     <img style="width: 50px" src={{this.img}} alt="">
 
-    <a href="/showprofile/{{this._id}}">
-        Username: {{this.username}}
+    <a href="/bandView/{{this._id}}">
+        Band Name: {{this.bandName}}
     </a>
-
     Location: {{this.country}}
-    Main role: {{this.mainRole}}
     Main genre: {{this.mainGenre}}
+    Band looking for: {{this.bandlookingfor}}
+    
 </div>
 
 {{/each}}
