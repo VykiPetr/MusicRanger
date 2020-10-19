@@ -8,8 +8,8 @@
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 <body>
-  <nav>
-    <div>
+  <nav class="nav-bar">
+    <div class="nav-buttons">
     {{#if loggedInUser}}
 
     {{else}}
@@ -27,8 +27,8 @@
     <a href="/logout">logout</a>
     {{/if}}
     </div>
-    <div>
-      <a href="/"><img src="images/MRlogo-removebg-preview.png" alt=""></a>
+    <div class="nav-logo">
+      <a href="/"><img style="width: 500px"src="images/MRlogo-removebg-preview.png" alt=""></a>
     </div>
   </nav>
 

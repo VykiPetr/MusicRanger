@@ -9,4 +9,14 @@ a {
   display: flex;
   flex-direction: column; }
 
+.nav-bar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; }
+
+.nav-bar .nav-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
 /*# sourceMappingURL=style.css.map */
