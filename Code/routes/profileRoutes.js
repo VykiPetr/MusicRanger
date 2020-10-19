@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs')
 const userModel = require('../models/User.model');
-const userDetailsModel = require('../models/UserDetails.model')
+const userDetailsModel = require('../models/UserDetails.model');
+const UserDetailsModel = require('../models/UserDetails.model');
 
 router.get('/dashboard', (req, res) => {
     if (!req.session.loggedInUser) {
@@ -42,7 +43,7 @@ router.post('/updateProfile', (req, res)=>{
     } else {
         listed = false
     }
-    userModel.findByIdAndUpdate(userId, {username,  img, mainGenre,  mainRole,  country,  listed})
+    userModel.findByIdAndUpdate(userId, {username,  img, mainGenre,  mainRole,  country,  listed}, {new: true})
         .then((userData)=>{
             userDetailsModel.findOneAndUpdate({userrefid: userId}, {description, subGenre, subRole, city, facebookurl, instagramurl, youtubeurl,soundcloudurl, spotifyurl})
             .then(()=>{
@@ -52,6 +53,19 @@ router.post('/updateProfile', (req, res)=>{
             .catch((err)=>console.log('error in post update profile detaismodel findby id, ', err))
         })
     // console.log(req.body)
+})
+
+router.get('/showprofile/:id', (req, res) => {
+    let loggedInUser = req.session.loggedInUser
+    let id=req.params.id
+    userModel.findById(id)
+    .then((userProfile) => {
+        UserDetailsModel.findOne({userrefid:id})
+        .then((detailsData)=> {
+            res.render('profiles/profileDetail', {userProfile, detailsData})
+        })
+        
+    })
 })
 
 module.exports = router;
