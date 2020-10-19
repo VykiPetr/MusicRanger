@@ -1,7 +1,7 @@
-<form id="update-form" method="POST" action="/createband">
+<form id="update-form" method="POST" action="/createBand">
 
     <label>Band name</label>
-    <input name="bandname" type="text">
+    <input name="bandName" type="text">
 
     <label>Band image</label>
     <input name="img" type="text">
@@ -21,21 +21,6 @@
 
     <label>City</label>
     <input name="city" type="text">
-
-    <H3>Band Structure</H3>
-    {{!-- <div class="band-structure">
-        <form method="get" action="/appendChild"> --}}
-            <label>Mebmer's name</label>
-            <input name="memName" type="text">
-            <label>Link to their profile</label>
-            <input name="profileId" type="text">
-            <label>Their role</label>
-            <input name="memRole" type="text">
-            <button type="button">Add</button>
-        {{!-- </form>
-    </div> --}}
-    <h3>Who is your band looking for?</h3>
-    <input name="bandlookingfor" type="text">
 
     <button type="submit">Create a band</button>
 </form>

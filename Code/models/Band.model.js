@@ -27,7 +27,13 @@ const bandSchema = new mongoose.Schema({
         }
     }, ],
     bandlookingfor: [{
-        type: String,
+        name:{
+            type: String,
+        },
+        role: {
+            type: String,
+        }
+        
         // enum: roleList
     }],
     mainGenre: {

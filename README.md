@@ -167,13 +167,13 @@ attendees: [ObjectId<User>]
 
 ### Trello
 
-[Link to your trello board](https://trello.com) or picture of your physical board
+https://trello.com/b/kz1jqtA2/musicranger
 
 ### Git
 
 The url to your repository and to your deployed project
 
-[Repository Link](http://github.com)
+https://github.com/VykiPetr/MusicRanger
 
 [Deploy Link](http://heroku.com)
 
