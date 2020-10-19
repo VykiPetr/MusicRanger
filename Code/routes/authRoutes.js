@@ -96,10 +96,14 @@ router.post('/login', (req, res) => {
        })
 })
 
+
+
 router.get('/logout', (req, res)=>{
     req.session.destroy()
     res.render('auth/login.hbs', {message: 'logged out succesfully'})
 })
+
+
 
 
 module.exports = router;

@@ -74,4 +74,7 @@ app.use('/', profileRoutes);
 const bandRoutes = require('./routes/bandRoutes');
 app.use('/', bandRoutes);
 
+const listingRoutes = require('./routes/listingRoutes');
+app.use('/', listingRoutes);
+
 module.exports = app;

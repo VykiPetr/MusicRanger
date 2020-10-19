@@ -11,7 +11,7 @@ router.get('/dashboard', (req, res) => {
     let loggedInUser = req.session.loggedInUser
     userDetailsModel.findOne({userrefid: loggedInUser._id})
                 .then((detailsData)=>{
-                    console.log(detailsData, loggedInUser)
+                    console.log(loggedInUser,detailsData)
                     res.render('profiles/dashboard', {loggedInUser, detailsData})
                 })
                 .catch((err)=>console.log('error in dasborad userDetailsModel.findOne ', err))
