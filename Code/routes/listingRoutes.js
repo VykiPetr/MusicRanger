@@ -48,7 +48,7 @@ router.get("/searchBandsResults", (req, res, next) => {
       searchParams[key] = query[key];
     }
   }
-  bandModel.find({searchParams})
+  bandModel.find(searchParams)
   .then((results) => {
     res.render("listings/searchBandResults", { results , loggedInUser});
   });
