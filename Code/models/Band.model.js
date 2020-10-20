@@ -27,10 +27,7 @@ const bandSchema = new mongoose.Schema({
         }
     }, ],
     bandlookingfor: [{
-        role: {
-            type: String,
-        }
-        
+        type: String,
         // enum: roleList
     }],
     mainGenre: {
@@ -40,4 +37,4 @@ const bandSchema = new mongoose.Schema({
     subGenre: String,
 })
 
-module.exports  = mongoose.model('band', bandSchema)
+module.exports = mongoose.model('band', bandSchema)

@@ -34,7 +34,7 @@
 
     <h3>Missing someone in your band? Start searching!</h3>
     {{#each bandData.bandlookingfor}}
-    <div>{{this.role}} <a href="/removeMissing/{{this.bandId}}/{{this.role}}"><button>Delete</button></a></div>
+    <div>{{this}} <a href="/removeMissing/{{this.bandId}}/{{this}}"><button>Delete</button></a></div>
     {{/each}}
     <a href="/manageBands/{{bandData._id}}/addMissing"><button type="button">Add a missing spot</button></a>
 
