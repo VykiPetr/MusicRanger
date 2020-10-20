@@ -8,7 +8,7 @@ const bandModel = require("../models/Band.model");
 router.get("/musicianListings", (req, res) => {
   let loggedInUser = req.session.loggedInUser;
   userModel.find({ listed: true }).then((user) => {
-    res.render("listings/viewAll", { user, loggedInUser });
+    res.render("listings/viewAllMusicians", { user, loggedInUser });
   });
 });
 
@@ -36,7 +36,7 @@ router.get("/bandListings", (req, res) => {
   });
 });
 
-router.get("/searchResultsBands", (req, res, next) => {
+router.get("/searchBandsResults", (req, res, next) => {
   let loggedInUser = req.session.loggedInUser;
   let query = req.query;
   let searchParams = {};
@@ -49,9 +49,8 @@ router.get("/searchResultsBands", (req, res, next) => {
   }
   bandModel.find(searchParams)
   .then((results) => {
-    res.render("listings/searchResults", { results });
+    res.render("listings/searchBandResults", { results });
   });
-  //res.send(req.query)
 });
 
 module.exports = router;
