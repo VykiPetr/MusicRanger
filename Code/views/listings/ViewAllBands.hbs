@@ -24,7 +24,7 @@
     </a>
     Location: {{this.country}}
     Main genre: {{this.mainGenre}}
-    Band looking for: {{this.bandlookingfor}}
+    Band looking for: {{#each this.bandlookingfor}}<p>{{this.role}}</p>{{/each}}
     
 </div>
 

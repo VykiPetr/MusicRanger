@@ -27,9 +27,6 @@ const bandSchema = new mongoose.Schema({
         }
     }, ],
     bandlookingfor: [{
-        name:{
-            type: String,
-        },
         role: {
             type: String,
         }
