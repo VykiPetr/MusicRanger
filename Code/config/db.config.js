@@ -1,7 +1,9 @@
+
 const mongoose = require('mongoose')
+const MONGODB_URL = process.env.MONGODB_URL || 'mongodb://localhost/MusicRanger'
 
 mongoose
-  .connect('mongodb://localhost/MusicRanger', {useNewUrlParser: true, useUnifiedTopology: true})
+  .connect(MONGODB, {useNewUrlParser: true, useUnifiedTopology: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
