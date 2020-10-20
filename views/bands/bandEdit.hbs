@@ -1,0 +1,42 @@
+<form id="update-form" method="POST" action="/bandEdit/{{bandData._id}}">
+
+    <label>Band name</label>
+    <input required name="bandName" type="text" value="{{bandData.bandName}}">
+
+    <label>Band image</label>
+    <input name="img" type="text" value="{{bandData.img}}">
+
+    <label>Describe your band</label>
+    <input name="description" type="text" value="{{bandData.description}}">
+
+    <label>Main Band genre</label>
+    <input name="mainGenre" type="text" value="{{bandData.mainGenre}}">
+
+    <label>Sub Band genres</label>
+    <input name="subGenre" type="text" value="{{bandData.subGenre}}">
+
+    <h3>Where is your band located</h3>
+    <label>Country</label>
+    <input name="country" type="text" value="{{bandData.country}}">
+
+    <label>City</label>
+    <input name="city" type="text" value="{{bandData.city}}">
+
+    <h3>Add a band member</h3>
+    {{#each bandData.bandstructure}}
+    {{#if this.profileId}}
+    <div><a href="/showprofile/{{this.profileId}}">{{this.name}}</a>, does {{this.role}} <a href="/removeMember/{{this.bandId}}/{{this.profileId}}"><button>Remove member</button></a></div>
+    {{else}}
+    <div>{{this.name}}, does {{this.role}} <a href="/removeMember/{{this.bandId}}/{{this.name}}"><button>Remove member</button></a></div>
+    {{/if}}
+    {{/each}}
+    <a href="/manageBands/{{bandData._id}}/addMember"><button type="button">Add a band member</button></a>
+
+    <h3>Missing someone in your band? Start searching!</h3>
+    {{#each bandData.bandlookingfor}}
+    <div>{{this}} <a href="/removeMissing/{{this.bandId}}/{{this}}"><button>Delete</button></a></div>
+    {{/each}}
+    <a href="/manageBands/{{bandData._id}}/addMissing"><button type="button">Add a missing spot</button></a>
+
+    <button type="submit">Save edits</button>
+</form>

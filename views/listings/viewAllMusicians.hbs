@@ -1,0 +1,36 @@
+<div>
+    <form action="/searchMusiciansResults" method="GET">
+  <label for="">Genre</label>
+  <input type="text" name="mainGenre" id="">
+  <label for="">Role</label>
+  <input type="text" name="mainRole" id="">
+  <label for="">Country</label>
+  <input type="text" name="country" id="">
+  <label for="">Country</label>
+  <input type="text" name="city" id="">
+  
+  <button type="submit">Search Musicians</button>
+</form>
+
+</div>
+
+
+
+
+
+
+{{#each user}}
+
+<div>
+    <img style="width: 50px" src={{this.img}} alt="">
+
+    <a href="/musicianProfile/{{this._id}}">
+        Username: {{this.username}}
+    </a>
+
+    Location: {{this.country}}
+    Main role: {{this.mainRole}}
+    Main genre: {{this.mainGenre}}
+</div>
+
+{{/each}}

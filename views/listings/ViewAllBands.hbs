@@ -1,0 +1,31 @@
+<div>
+<form action="/searchBandsResults" method="GET">
+  <label for="">Genre</label>
+  <input type="text" name="mainGenre" id="">
+  <label for="">Band Looking for</label>
+  <input type="text" name="bandlookingfor" id="">
+  <label for="">Country</label>
+  <input type="text" name="country" id="">
+  <label for="">City</label>
+  <input type="text" name="city" id="">
+  
+  <button type="submit">Search Bands</button>
+</form>
+
+</div>
+
+{{#each band}}
+
+<div>
+    <img style="width: 50px" src={{this.img}} alt="">
+
+    <a href="/bandView/{{this._id}}">
+        Band Name: {{this.bandName}}
+    </a>
+    Location: {{this.country}}
+    Main genre: {{this.mainGenre}}
+    Band looking for: {{#each this.bandlookingfor}}<p>{{this}}</p>{{/each}}
+    
+</div>
+
+{{/each}}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>MusicRanger</title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
+<body>
+  <nav class="nav-bar">
+    <div class="nav-buttons">
+    {{#if loggedInUser}}
+
+    {{else}}
+    <a href="/signup">signup</a>
+    {{/if}}
+    {{#if loggedInUser}}
+
+    {{else}}
+    <a href="/login">Login</a>
+    {{/if}}
+    {{#if loggedInUser}}
+    <a href="/dashboard">Your dashboard</a>
+    {{/if}}
+    {{#if loggedInUser}}
+    <a href="/logout">logout</a>
+    {{/if}}
+    
+    {{#if loggedInUser}}
+    <a href="/musicianListings">View Musicians</a>
+    {{/if}}
+    
+    {{#if loggedInUser}}
+    <a href="/bandListings">View Bands</a>
+    {{/if}}
+    </div>
+    <div class="nav-logo">
+      <a href="/"><img style="width: 500px"src="images/MRlogo-removebg-preview.png" alt=""></a>
+    </div>
+  </nav>
+
+  {{{body}}}
+
+  <script src="/javascripts/script.js"></script>
+</body>
+</html>

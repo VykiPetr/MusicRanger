@@ -1,0 +1,58 @@
+<div>Profile page of  {{userProfile.username}}</div>
+<div>
+    <div>
+        <img style="width: 100px" src={{userProfile.img}} alt="">
+        <div>
+            <h2>Username:{{userProfile.username}}</h2>
+        </div>
+        <div>
+            <h4>About Me:</h4>
+            <p>{{userProfile.description}}</p>
+        </div>
+        <div>
+            <h4>Main role:</h4> {{userProfile.mainRole}}
+            <h4>Sub-role:</h4> {{detailsData.subRole}}
+        </div>
+        <div>
+            <h4>Main genre:</h4> {{userProfile.mainGenre}}
+            <h4>Sub-genre:</h4> {{detailsData.subGenre}}
+        </div>
+        <div>
+            <h4>My Social Media Links</h4>
+            <a href={{detailsData.facebookurl}}>
+                <img style="width: 50px"
+                    src="https://www.clipartmax.com/png/middle/255-2552505_44-facebook-logo-in-circle.png" alt="">
+            </a>
+
+            <a href={{detailsData.instagramurl}}>
+                <img style="width: 50px"
+                    src="https://image.similarpng.com/very-thumbnail/2020/06/Instagram-logo-transparent-PNG.png" alt="">
+            </a>
+
+            <a href={{detailsData.youtubeurl}}>
+                <img style="width: 50px"
+                    src="http://clipart-library.com/images_k/youtube-logo-transparent-png/youtube-logo-transparent-png-7.png"
+                    alt="">
+            </a>
+
+            <a href={{detailsData.soundcloudurl}}>
+                <img style="width: 50px"
+                    src="https://png.pngitem.com/pimgs/s/168-1682274_soundcloud-hd-png-download.png" alt="">
+            </a>
+
+            <a href={{detailsData.spotifyurl}}>
+                <img style="width: 50px"
+                    src="https://png.pngitem.com/pimgs/s/525-5250751_logo-transparent-spotify-podcast-hd-png-download.png"
+                    alt="">
+            </a>
+        </div>
+        <div>
+            <h4>Location</h4>
+            Country: {{userProfile.country}}
+            City: {{detailsData.city}}
+        </div>
+    </div>
+    <div>
+        <a href="/send-message"><button>Send {{userProfile.username}} a message</button></a>
+    </div>
+</div>
