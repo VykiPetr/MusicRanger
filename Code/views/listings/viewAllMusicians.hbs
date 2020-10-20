@@ -1,16 +1,5 @@
 <div>
-    <p>What do you want to search?</p>
-    <input type="radio" id="musicList" name="chooseList" value="musicians">
-    <label for="musicians">Musicians</label>
-    <input type="radio" id="bandsList" name="chooseList" value="bands">
-    <label for="bands">Bands</label><br>
- 
-
-</div>
-
-{{#if musicians}}
-<div>
-    <form action="/searchResults" method="GET">
+    <form action="/searchMusiciansResults" method="GET">
   <label for="">Genre</label>
   <input type="text" name="mainGenre" id="">
   <label for="">Role</label>
@@ -20,13 +9,11 @@
   <label for="">Country</label>
   <input type="text" name="city" id="">
   
-  <button type="submit">SEARCH</button>
+  <button type="submit">Search Musicians</button>
 </form>
 
 </div>
-{{else}}
-<div>This is working</div>
-{{/if}}
+
 
 
 
@@ -37,7 +24,7 @@
 <div>
     <img style="width: 50px" src={{this.img}} alt="">
 
-    <a href="/showprofile/{{this._id}}">
+    <a href="/musicianProfile/{{this._id}}">
         Username: {{this.username}}
     </a>
 
