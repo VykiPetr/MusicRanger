@@ -250,9 +250,8 @@ router.post('/manageBands/:id/addMissing', (req, res) => {
   bandModel.findByIdAndUpdate(
       bandId, {
         $push: {
-          bandlookingfor: {
-            role
-          }
+          bandlookingfor: role
+
         }
       })
     .then(() => {
@@ -276,17 +275,16 @@ router.get('/removeMember/:bandId/:userId', (req, res) => {
     })
     .then(() => {
       bandModel.findByIdAndUpdate(
-        bandId
-      , {
-        $pull: {
-          bandstructure: {
-            profileId: userId
-          }
-        }
-      })
-      .then(()=>{
-        res.redirect(`/bandEdit/${bandId}`)
-      })
+          bandId, {
+            $pull: {
+              bandstructure: {
+                profileId: userId
+              }
+            }
+          })
+        .then(() => {
+          res.redirect(`/bandEdit/${bandId}`)
+        })
     })
 
 })

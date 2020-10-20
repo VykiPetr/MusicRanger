@@ -24,7 +24,7 @@ router.get("/searchMusiciansResults", (req, res, next) => {
     }
   }
   userModel.find(searchParams).then((results) => {
-    res.render("listings/searchMusiciansResults", { results });
+    res.render("listings/searchMusiciansResults", { results , loggedInUser});
   });
   //res.send(req.query)
 });
@@ -42,14 +42,15 @@ router.get("/searchBandsResults", (req, res, next) => {
   let searchParams = {};
   // {genre: "Rock", mainrole: "Vocals", city:""}
   // {key: ubndefined}
+  console.log(searchParams)
   for (let key in query) {
     if (query[key]) {
       searchParams[key] = query[key];
     }
   }
-  bandModel.find(searchParams)
+  bandModel.find({searchParams})
   .then((results) => {
-    res.render("listings/searchBandResults", { results });
+    res.render("listings/searchBandResults", { results , loggedInUser});
   });
 });
 
