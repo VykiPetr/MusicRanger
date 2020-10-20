@@ -25,16 +25,16 @@
     <h3>Add a band member</h3>
     {{#each bandData.bandstructure}}
     {{#if this.profileId}}
-    <div><a href="/showprofile/{{this.profileId}}">{{this.name}}</a>, does {{this.role}} <a href="/removeMember/{{this.profileId}}"><button>Remove member</button></a></div>
+    <div><a href="/showprofile/{{this.profileId}}">{{this.name}}</a>, does {{this.role}} <a href="/removeMember/{{this.bandId}}/{{this.profileId}}"><button>Remove member</button></a></div>
     {{else}}
-    <div>{{this.name}}, does {{this.role}} <a href="/removeMember/{{this.name}}"><button>Remove member</button></a></div>
+    <div>{{this.name}}, does {{this.role}} <a href="/removeMember/{{this.bandId}}/{{this.name}}"><button>Remove member</button></a></div>
     {{/if}}
     {{/each}}
     <a href="/manageBands/{{bandData._id}}/addMember"><button type="button">Add a band member</button></a>
 
     <h3>Missing someone in your band? Start searching!</h3>
     {{#each bandData.bandlookingfor}}
-    <div>{{this.role}} <a href=""><button>Delete</button></a></div>
+    <div>{{this.role}} <a href="/removeMissing/{{this.bandId}}/{{this.role}}"><button>Delete</button></a></div>
     {{/each}}
     <a href="/manageBands/{{bandData._id}}/addMissing"><button type="button">Add a missing spot</button></a>
 
