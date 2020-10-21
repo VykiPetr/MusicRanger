@@ -23,9 +23,11 @@ router.get("/searchMusiciansResults", (req, res, next) => {
       searchParams[key] = query[key];
     }
   }
+  
   userModel.find(searchParams).then((results) => {
     res.render("listings/searchMusiciansResults", { results , loggedInUser});
   });
+  
   //res.send(req.query)
 });
 
