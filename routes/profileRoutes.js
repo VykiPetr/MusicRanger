@@ -24,6 +24,7 @@ router.get("/dashboard", (req, res) => {
 
 router.get("/updateProfile", (req, res) => {
   let userId = req.session.loggedInUser._id;
+  let loggedInUser = req.session.loggedInUser
   if (!loggedInUser){
     res.status(500).render("index.hbs", { message: "Please sign up or login to view this page" })
     return;
@@ -39,7 +40,8 @@ router.get("/updateProfile", (req, res) => {
           res.render("profiles/updateProfile", { userDataMain, detailsData });
         })
         .catch((err) =>
-          console.log("error in updateProfile userDetailsModel.findOne ", err)
+          //console.log("error in updateProfile userDetailsModel.findOne ", err)
+          res.redirect('/updateProfile')
         );
     })
     .catch((err) =>
@@ -49,6 +51,7 @@ router.get("/updateProfile", (req, res) => {
 
 router.post("/updateProfile", (req, res) => {
   let userId = req.session.loggedInUser._id;
+  let loggedInUser = req.session.loggedInUser;
   if (!loggedInUser){
     res.status(500).render("index.hbs", { message: "Please sign up or login to view this page" })
     return;
@@ -97,10 +100,11 @@ router.post("/updateProfile", (req, res) => {
           res.redirect("/dashboard");
         })
         .catch((err) =>
-          console.log(
-            "error in post update profile detaismodel findby id, ",
-            err
-          )
+          //console.log(
+            //"error in post update profile detaismodel findby id, ",
+            //err)
+          
+          res.redirect('/updateProfile')
         );
     });
   // console.log(req.body)
