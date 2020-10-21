@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+let {allCountries} = require('../lib/countriesList')
 
 const userSchema = new mongoose.Schema(
     {
@@ -19,7 +20,7 @@ const userSchema = new mongoose.Schema(
 	img: String,
 	country: {
 		type: String,
-		// enum: allCountries
+		 enum: [...allCountries]
 		},
 	mainGenre: {
 		type: String,

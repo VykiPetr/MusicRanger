@@ -5,6 +5,7 @@ const userModel = require("../models/User.model");
 const userDetailsModel = require("../models/UserDetails.model");
 const UserDetailsModel = require("../models/UserDetails.model");
 const bandModel = require("../models/Band.model");
+let {allCountries} = require('../lib/countriesList');
 
 router.get("/dashboard", (req, res) => {
   if (!req.session.loggedInUser) {
@@ -24,7 +25,11 @@ router.get("/dashboard", (req, res) => {
 
 router.get("/updateProfile", (req, res) => {
   let userId = req.session.loggedInUser._id;
-  console.log("user Id ", userId);
+  let loggedInUser = req.session.loggedInUser
+  if (!loggedInUser){
+    res.status(500).render("index.hbs", { message: "Please sign up or login to view this page" })
+    return;
+  }
   userModel
     .findById(userId)
     .then((userDataMain) => {
@@ -33,10 +38,11 @@ router.get("/updateProfile", (req, res) => {
         .findOne({ userrefid: userId })
         .then((detailsData) => {
           console.log("details model data: ", detailsData);
-          res.render("profiles/updateProfile", { userDataMain, detailsData });
+          res.render("profiles/updateProfile", { userDataMain, detailsData, allCountries });
         })
         .catch((err) =>
-          console.log("error in updateProfile userDetailsModel.findOne ", err)
+          //console.log("error in updateProfile userDetailsModel.findOne ", err)
+          res.redirect('/updateProfile')
         );
     })
     .catch((err) =>
@@ -46,6 +52,11 @@ router.get("/updateProfile", (req, res) => {
 
 router.post("/updateProfile", (req, res) => {
   let userId = req.session.loggedInUser._id;
+  let loggedInUser = req.session.loggedInUser;
+  if (!loggedInUser){
+    res.status(500).render("index.hbs", { message: "Please sign up or login to view this page" })
+    return;
+  }
   let { username, img, mainGenre, mainRole, country, listed } = req.body;
   let {
     description,
@@ -67,7 +78,7 @@ router.post("/updateProfile", (req, res) => {
     .findByIdAndUpdate(
       userId,
       { username, img, mainGenre, mainRole, country, listed },
-      { new: true }
+      { new: true, runValidators:true }
     )
     .then((userData) => {
       userDetailsModel
@@ -90,10 +101,11 @@ router.post("/updateProfile", (req, res) => {
           res.redirect("/dashboard");
         })
         .catch((err) =>
-          console.log(
-            "error in post update profile detaismodel findby id, ",
-            err
-          )
+          //console.log(
+            //"error in post update profile detaismodel findby id, ",
+            //err)
+          
+          res.redirect('/updateProfile')
         );
     });
   // console.log(req.body)
@@ -101,6 +113,10 @@ router.post("/updateProfile", (req, res) => {
 
 router.get("/musicianProfile/:id", (req, res) => {
   let loggedInUser = req.session.loggedInUser;
+  if (!loggedInUser){
+    res.status(500).render("index.hbs", { message: "Please sign up or login to view this page" })
+    return;
+  }
   let id = req.params.id;
   userModel.findById(id)
   .then((userProfile) => {
@@ -117,6 +133,11 @@ router.get("/musicianProfile/:id", (req, res) => {
 
 router.get("/bandView/:id", (req, res) => {
   let loggedInUser = req.session.loggedInUser;
+  if (!loggedInUser){
+    res.status(500).render("index.hbs", { message: "Please sign up or login to view this page" })
+    return;
+  }
+  
   let id = req.params.id;
 
   bandModel.findById(id)
