@@ -1,19 +1,28 @@
 <div>Welcome to your dashboard {{loggedInUser.username}}</div>
-<div>
-    <div>
-        <img style="width: 100px" src={{loggedInUser.img}} alt="">
-        <div>
-            <h2>Username:{{loggedInUser.username}}</h2>
-            <h4>About Me</h4>
-            <p>{{detailsData.description}}</p>
+<div class="dashboard-cont">
+    <div class="dash-info-cont">
+        <div class="dash-top">
+            <img style="width: 100px" src={{loggedInUser.img}} alt="">
+            <div>
+                <h2>Username:{{loggedInUser.username}}</h2>
+                <h4>About Me</h4>
+                <p>{{detailsData.description}}</p>
+            </div>
         </div>
-        <div>
-            <h4>Main role:</h4> {{loggedInUser.mainRole}}
-            <h4>Sub role:</h4> {{detailsData.subRole}}
-        </div>
-        <div>
-            <h4>Main genre:</h4> {{loggedInUser.mainGenre}}
-            <h4>Sub genre:</h4> {{detailsData.subGenre}}
+        <div class="dash-mid">
+            <div>
+                <h4>Main role:</h4> {{loggedInUser.mainRole}}
+                <h4>Sub role:</h4> {{detailsData.subRole}}
+            </div>
+            <div>
+                <h4>Main genre:</h4> {{loggedInUser.mainGenre}}
+                <h4>Sub genre:</h4> {{detailsData.subGenre}}
+            </div>
+            <div>
+                <h4>Location</h4>
+                Country: {{loggedInUser.country}}
+                City: {{detailsData.city}}
+            </div>
         </div>
         <div>
             <h4>My Social Media Links</h4>
@@ -44,13 +53,9 @@
                     alt="">
             </a>
         </div>
-        <div>
-            <h4>Location</h4>
-            Country: {{loggedInUser.country}}
-            City: {{detailsData.city}}
-        </div>
+
     </div>
-    <div>
+    <div class="dash-btn">
         <a href="/updateProfile"><button>Update Profile</button></a>
         <a href="/managebands"><button>Manage your Bands</button></a>
     </div>

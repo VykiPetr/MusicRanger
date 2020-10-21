@@ -1,22 +1,101 @@
 body {
-  padding: 50px;
+  background-color: #fcfcfc;
+  margin: 0%;
+  padding: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
-a {
-  color: #00B7FF; }
+footer {
+  position: relative; }
+
+#anchor {
+  text-decoration: none;
+  color: white; }
+
+#anchorIndex {
+  text-decoration: none;
+  color: black;
+  font-size: 1.9em; }
+
+.indexBtn {
+  width: 150px;
+  height: 100px; }
+
+.indexBtn p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  text-align: center;
+  font-size: 1.9em; }
 
 #update-form {
   display: flex;
   flex-direction: column; }
 
+.nav-logo {
+  width: 25%;
+  justify-content: left; }
+
 .nav-bar {
+  background-image: url("../images/navBackground.png");
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  justify-content: space-evenly; }
 
 .nav-bar .nav-buttons {
+  width: 100px;
+  position: left;
   display: flex;
   align-items: center;
   justify-content: center; }
+
+.nav-bar .nav-buttons a {
+  font-size: 1.5em;
+  margin: 5px; }
+
+#landing {
+  text-align: center;
+  font-size: 2em;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+
+.signUpLogIn {
+  font-size: 1.9em;
+  padding: 10px 50px 0 50px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center; }
+
+.signUpLogIn input {
+  width: 500px; }
+
+.signUpLogIn button {
+  font-size: 1em;
+  margin: 15px;
+  width: 250px; }
+
+.dashboard-cont {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around; }
+
+.dash-top {
+  display: flex; }
+
+.dash-btn {
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: top; }
+
+.dash-info-cont {
+  display: flex;
+  flex-direction: column; }
 
 /*# sourceMappingURL=style.css.map */
