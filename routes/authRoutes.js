@@ -23,6 +23,18 @@ router.post('/signup', (req, res) => {
         return;
     }
 
+    let emailReg = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+        if (!emailReg.test(email)) {
+        res.status(500).render('auth/signup', {message: 'Please enter valid email'})
+        return;
+    }
+
+    let passwordReg = new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/)
+        if (!passwordReg.test(password)) {
+        res.status(500).render('auth/signup', {message: 'Password must have one lowercase, one uppercase, a number, a special character and must be at least 8 characters long'})
+        return; 
+    }
+
     userModel.findOne({
             username
         })
