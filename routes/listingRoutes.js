@@ -31,7 +31,8 @@ router.get("/searchMusiciansResults", (req, res, next) => {
 
 router.get("/bandListings", (req, res) => {
   let loggedInUser = req.session.loggedInUser;
-  bandModel.find().then((band) => {
+  bandModel.find()
+  .then((band) => {
     res.render("listings/viewAllBands", { band, loggedInUser });
   });
 });
