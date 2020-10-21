@@ -14,6 +14,10 @@ router.get("/musicianListings", (req, res) => {
 
 router.get("/searchMusiciansResults", (req, res, next) => {
   let loggedInUser = req.session.loggedInUser;
+  if (!loggedInUser){
+    res.status(500).render("index.hbs", { message: "Please sign up or login to search listings" })
+    return;
+  }
   let query = req.query;
   let searchParams = {};
   // {genre: "Rock", mainrole: "Vocals", city:""}
@@ -41,6 +45,10 @@ router.get("/bandListings", (req, res) => {
 
 router.get("/searchBandsResults", (req, res, next) => {
   let loggedInUser = req.session.loggedInUser;
+  if (!loggedInUser){
+    res.status(500).render("index.hbs", { message: "Please sign up or login to search listings" })
+    return;
+  }
   let query = req.query;
   let searchParams = {};
   // {genre: "Rock", mainrole: "Vocals", city:""}

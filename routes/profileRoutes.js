@@ -24,7 +24,10 @@ router.get("/dashboard", (req, res) => {
 
 router.get("/updateProfile", (req, res) => {
   let userId = req.session.loggedInUser._id;
-  console.log("user Id ", userId);
+  if (!loggedInUser){
+    res.status(500).render("index.hbs", { message: "Please sign up or login to view this page" })
+    return;
+  }
   userModel
     .findById(userId)
     .then((userDataMain) => {
@@ -46,6 +49,10 @@ router.get("/updateProfile", (req, res) => {
 
 router.post("/updateProfile", (req, res) => {
   let userId = req.session.loggedInUser._id;
+  if (!loggedInUser){
+    res.status(500).render("index.hbs", { message: "Please sign up or login to view this page" })
+    return;
+  }
   let { username, img, mainGenre, mainRole, country, listed } = req.body;
   let {
     description,
@@ -101,6 +108,10 @@ router.post("/updateProfile", (req, res) => {
 
 router.get("/musicianProfile/:id", (req, res) => {
   let loggedInUser = req.session.loggedInUser;
+  if (!loggedInUser){
+    res.status(500).render("index.hbs", { message: "Please sign up or login to view this page" })
+    return;
+  }
   let id = req.params.id;
   userModel.findById(id)
   .then((userProfile) => {
@@ -117,6 +128,11 @@ router.get("/musicianProfile/:id", (req, res) => {
 
 router.get("/bandView/:id", (req, res) => {
   let loggedInUser = req.session.loggedInUser;
+  if (!loggedInUser){
+    res.status(500).render("index.hbs", { message: "Please sign up or login to view this page" })
+    return;
+  }
+  
   let id = req.params.id;
 
   bandModel.findById(id)
