@@ -9,7 +9,7 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 
-//fix
+//fix merge
 
 require('./config/db.config')
 
