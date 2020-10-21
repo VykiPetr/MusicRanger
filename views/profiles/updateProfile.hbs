@@ -22,8 +22,11 @@
     <input name="subRole" type="text" placeholder="Triangle, guitar" value="{{detailsData.subRole}}">
 
     <label>Your Country</label>
-    <input name="country" type="text" placeholder="" value="{{userDataMain.country}}">
-
+    <select name="country" id="" value="{{detailsData.country}}">
+        {{#each allCountries}}
+        <option value="{{this}}">{{this}}</option>
+        {{/each}}
+    </select>
     <label>Your City</label>
     <input name="city" type="text" placeholder="" value="{{detailsData.city}}">
 
