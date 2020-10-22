@@ -16,8 +16,16 @@
     <input name="subGenre" type="text" value="{{bandData.subGenre}}">
 
     <h3>Where is your band located</h3>
-    <label>Country</label>
-    <input name="country" type="text" value="{{bandData.country}}">
+    <label>Your Country</label>
+    <select name="country" id="">
+        {{! First Option shows country previously saved.  Avoids resetting to first country in list when updating another field}}
+        <option value="{{bandData.country}}">{{bandData.country}}</option>
+
+        {{! Second option allows to change country from previously saved country.  Note: Previously saved country will appear twice,  at top of list and in its normal list position}}
+        {{#each allCountries}}
+        <option value="{{this}}">{{this}}</option>
+        {{/each}}
+    </select>
 
     <label>City</label>
     <input name="city" type="text" value="{{bandData.city}}">

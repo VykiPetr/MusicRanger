@@ -23,12 +23,17 @@
     <input name="subRole" type="text" placeholder="Triangle, guitar" value="{{detailsData.subRole}}">
 
     <label>Your Country</label>
-    <select name="country" id="" value="{{detailsData.country}}">
+    <select name="country" id="">
+        {{! First Option shows country previously saved.  Avoids resetting to first country in list when updating another field}}
+        <option value="{{userDataMain.country}}">{{userDataMain.country}}
+        </option>
+        {{! Second option allows to change country from previously saved country.  Note: Previously saved country will appear twice,  at top of list and in its normal list position}}
         {{#each allCountries}}
         <option value="{{this}}">{{this}}</option>
         {{/each}}
     </select>
     <label>Your City</label>
+    
     <input name="city" type="text" placeholder="" value="{{detailsData.city}}">
 
     <label>Your Instagram page</label>

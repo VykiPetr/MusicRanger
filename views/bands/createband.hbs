@@ -21,7 +21,13 @@
 
     <h3>Where is your band located</h3>
     <label>Country</label>
-    <input name="country" type="text">
+    <select name="country" id="" value="{{data.country}}">
+        {{#each allCountries}}
+        <option value="{{this}}">{{this}}</option>
+        {{/each}}
+    </select>
+    {{!--<input name="country" type="text">--}}
+    
 
     <label>City</label>
     <input name="city" type="text">
