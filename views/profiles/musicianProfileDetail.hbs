@@ -1,5 +1,5 @@
 <div>Profile page of {{userProfile.username}}</div>
-<div>
+<div class="dashboard-cont">
   <div>
     <img style="width: 100px" src={{userProfile.img}} alt="">
     <div>
@@ -29,7 +29,6 @@
       {{/each}}
     </div>
     <div>
-      <h4>My Social Media Links</h4>
       {{#if detailsData.facebookurl}}
       {{#if detailsData.instagramurl}}
       {{#if detailsData.youtubeurl}}
