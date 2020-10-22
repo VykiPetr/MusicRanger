@@ -1,4 +1,4 @@
-<div>Profile page of  {{userProfile.username}}</div>
+<div>Profile page of {{userProfile.username}}</div>
 <div>
     <div>
         <img style="width: 100px" src={{userProfile.img}} alt="">
@@ -21,39 +21,58 @@
             <h3>{{userProfile.username}} is a member of these bands</h3>
             {{#each bands}}
             <div>
-              <img style="width: 50px" src="{{this.img}}" alt="">
-              <a href="/bandView/{{this._id}}"><h5>{{this.bandName}}</h5></a> 
+                <img style="width: 50px" src="{{this.img}}" alt="">
+                <a href="/bandView/{{this._id}}">
+                    <h5>{{this.bandName}}</h5>
+                </a>
             </div>
             {{/each}}
         </div>
         <div>
             <h4>My Social Media Links</h4>
+            {{#if detailsData.facebookurl}}
+                {{#if detailsData.instagramurl}}
+                    {{#if detailsData.youtubeurl}}
+                        {{#if detailsData.soundcloudurl}}
+                            {{#if detailsData.spotifyurl}}
+                            
+                            {{/if}}
+                        {{/if}}
+                    {{/if}}
+                {{/if}}
+            {{/if}}
+            {{#if detailsData.facebookurl}}
             <a href={{detailsData.facebookurl}}>
                 <img style="width: 50px"
                     src="https://www.clipartmax.com/png/middle/255-2552505_44-facebook-logo-in-circle.png" alt="">
             </a>
-
+            {{/if}}
+            {{#if detailsData.instagramurl}}
             <a href={{detailsData.instagramurl}}>
                 <img style="width: 50px"
                     src="https://image.similarpng.com/very-thumbnail/2020/06/Instagram-logo-transparent-PNG.png" alt="">
             </a>
-
+            {{/if}}
+            {{#if detailsData.youtubeurl}}
             <a href={{detailsData.youtubeurl}}>
                 <img style="width: 50px"
                     src="http://clipart-library.com/images_k/youtube-logo-transparent-png/youtube-logo-transparent-png-7.png"
                     alt="">
             </a>
-
+            {{/if}}
+            {{#if detailsData.soundcloudurl}}
             <a href={{detailsData.soundcloudurl}}>
                 <img style="width: 50px"
                     src="https://png.pngitem.com/pimgs/s/168-1682274_soundcloud-hd-png-download.png" alt="">
             </a>
-
+            {{/if}}
+            {{#if detailsData.spotifyurl}}
             <a href={{detailsData.spotifyurl}}>
                 <img style="width: 50px"
                     src="https://png.pngitem.com/pimgs/s/525-5250751_logo-transparent-spotify-podcast-hd-png-download.png"
                     alt="">
             </a>
+            {{/if}}
         </div>
         <div>
             <h4>Location</h4>

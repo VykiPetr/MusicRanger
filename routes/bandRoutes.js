@@ -49,6 +49,8 @@ router.post('/createBand', (req, res) => {
   } = req.body
   let user = req.session.loggedInUser
 
+  if (!img){ img = "https://cdn.shopify.com/s/files/1/2929/5648/files/my-band_large.jpg?v=1531312528"}
+
   bandModel.create({
       bandName,
       img,
@@ -117,7 +119,8 @@ router.post('/bandEdit/:id', (req, res) => {
       country,
       city
     })
-    .then(() => {
+    .then((band) => {
+      band.bandlookingfor.forEach((e) => e.bandId[bandId])
       res.redirect(`/bandEdit/${bandId}`)
     })
 })
@@ -255,7 +258,6 @@ router.post('/manageBands/:id/addMissing', (req, res) => {
       bandId, {
         $push: {
           bandlookingfor: role
-
         }
       })
     .then(() => {
@@ -303,6 +305,10 @@ router.get('/removeMissing/:bandId/:role', (req, res) => {
   let loggedInUser = req.session.loggedInUser
   let bandId = req.params.bandId
   let role = req.params.role
+  bandModel.findByIdAndUpdate(bandId, {$pull: { bandlookingfor: role }})
+    .then(()=>{
+      res.redirect(`/bandEdit/${bandId}`)
+    })
 })
 
 module.exports = router;

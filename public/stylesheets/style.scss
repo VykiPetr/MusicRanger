@@ -12,7 +12,10 @@ body {
 }
 
 footer {
-  position: relative;
+  position: absolute;
+  bottom: 0.1;
+  width: 100%;
+  height: 2.5rem;
 }
 
 #anchor {
@@ -132,4 +135,14 @@ footer {
   display: flex;
   flex-direction: column;
 
+}
+
+.user-box {
+  font-size: 1.5em;
+  padding: 5px;
+  justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
 }
