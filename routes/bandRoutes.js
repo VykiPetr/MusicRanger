@@ -40,6 +40,7 @@ router.get('/managebands/createBand', (req, res) => {
 })
 
 router.post('/createBand', (req, res) => {
+  let loggedInUser = req.session.loggedInUser
   let {
     bandName,
     img,
@@ -51,7 +52,7 @@ router.post('/createBand', (req, res) => {
   } = req.body
   let user = req.session.loggedInUser
 
-    console.log(bandName)
+  if (!img){ img = "https://cdn.shopify.com/s/files/1/2929/5648/files/my-band_large.jpg?v=1531312528"}
 
   bandModel.create({
       bandName,
@@ -81,7 +82,10 @@ router.post('/createBand', (req, res) => {
         .then(() => res.redirect('/managebands'))
         .catch((err) => console.log('error in updating the users band links in /createband model.create ', err))
     })
-    .catch((err) => console.log("Error in create band ", err))
+    .catch((err) => {
+      res.status(500).render('bands/createBand.hbs', {message: 'Please select a different band name, band name already in use', loggedInUser})
+      return
+    })
 })
 
 router.get('/bandEdit/:id', (req, res) => {
@@ -91,7 +95,7 @@ router.get('/bandEdit/:id', (req, res) => {
     .then((bandData) => {
       bandData.bandstructure.forEach((e) => e.bandId = bandId)
       bandData.bandlookingfor.forEach((e) => e.bandId = bandId)
-      res.render('bands/bandEdit', {
+      res.render('bands/bandEdit.hbs', {
         bandData,
         loggedInUser,allCountries
       })
@@ -147,8 +151,8 @@ router.get('/bandDelete/:id', (req, res) => {
 router.get('/bandView/:id', (req, res) => {
   let bandId = req.params.id
   let loggedInUser = req.session.loggedInUser
-  res.render('bands/bandView', {
-    loggedInUser
+  res.render('bands/bandView.hbs', {
+    loggedInUser, layout: true
   })
 
 })
@@ -156,7 +160,7 @@ router.get('/bandView/:id', (req, res) => {
 router.get('/manageBands/:id/addMember', (req, res) => {
   let bandId = req.params.id
   let loggedInUser = req.session.loggedInUser
-  res.render('bands/addBandMember', {
+  res.render('bands/addBandMember.hbs', {
     bandId,
     loggedInUser
   })
@@ -174,7 +178,7 @@ router.get('/manageBands/:id/addMember/search', (req, res) => {
     .then((user) => {
       //Jorge style cheat
       user.forEach((e) => e.bandId = bandId)
-      res.render('bands/addBandMember', {
+      res.render('bands/addBandMember.hbs', {
         bandId,
         loggedInUser,
         user
@@ -242,7 +246,7 @@ router.get("/manageBands/:bandId/addMember/:userId", (req, res) => {
 router.get('/manageBands/:id/addMissing', (req, res) => {
   let loggedInUser = req.session.loggedInUser
   let bandId = req.params.id
-  res.render('bands/addMissing', {
+  res.render('bands/addMissing.hbs', {
     bandId,
     loggedInUser
   })
@@ -258,7 +262,6 @@ router.post('/manageBands/:id/addMissing', (req, res) => {
       bandId, {
         $push: {
           bandlookingfor: role
-
         }
       })
     .then(() => {
@@ -306,6 +309,10 @@ router.get('/removeMissing/:bandId/:role', (req, res) => {
   let loggedInUser = req.session.loggedInUser
   let bandId = req.params.bandId
   let role = req.params.role
+  bandModel.findByIdAndUpdate(bandId, {$pull: { bandlookingfor: role }})
+    .then(()=>{
+      res.redirect(`/bandEdit/${bandId}`)
+    })
 })
 
 module.exports = router;

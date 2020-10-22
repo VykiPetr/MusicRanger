@@ -1,3 +1,7 @@
+{{#if message}}
+<h3>{{message}}</h3>
+{{/if}}
+
 <form id="update-form" method="POST" action="/createBand">
 
     <label>Band name</label>
@@ -12,7 +16,7 @@
     <label>Main Band genre</label>
     <input name="mainGenre" type="text">
 
-    <label>Sub Band genres</label>
+    <label>Other Band genres</label>
     <input name="subGenre" type="text">
 
     <h3>Where is your band located</h3>

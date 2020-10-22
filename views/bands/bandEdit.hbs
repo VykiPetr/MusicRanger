@@ -12,7 +12,7 @@
     <label>Main Band genre</label>
     <input name="mainGenre" type="text" value="{{bandData.mainGenre}}">
 
-    <label>Sub Band genres</label>
+    <label>Other Band genres</label>
     <input name="subGenre" type="text" value="{{bandData.subGenre}}">
 
     <h3>Where is your band located</h3>
@@ -33,7 +33,7 @@
     <h3>Add a band member</h3>
     {{#each bandData.bandstructure}}
     {{#if this.profileId}}
-    <div><a href="/showprofile/{{this.profileId}}">{{this.name}}</a>, does {{this.role}} <button><a href="/removeMember/{{this.bandId}}/{{this.profileId}}">  Remove member  </a></button></div>
+    <div><a href="/musicianProfile/{{this.profileId}}">{{this.name}}</a>, does {{this.role}} <button><a href="/removeMember/{{this.bandId}}/{{this.profileId}}">  Remove member  </a></button></div>
     {{else}}
     <div>{{this.name}}, does {{this.role}} <a href="/removeMember/{{this.bandId}}/{{this.name}}"><button>Remove member</button></a></div>
     {{/if}}
@@ -42,9 +42,9 @@
 
     <h3>Missing someone in your band? Start searching!</h3>
     {{#each bandData.bandlookingfor}}
-    <div>{{this}} <a href="/removeMissing/{{this.bandId}}/{{this}}"><button>Delete</button></a></div>
+    <div>{{this}} <button><a href="/removeMissing/{{this.bandId}}/{{this}}">Delete missing</a></button></div>
     {{/each}}
     <a href="/manageBands/{{bandData._id}}/addMissing"><button type="button">Add a missing spot</button></a>
 
     <button type="submit">Save edits</button>
-</form>
+</form> 

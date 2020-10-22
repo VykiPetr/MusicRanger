@@ -9,7 +9,12 @@
   </select>
   
   <label for="">Role</label>
-  <input type="text" name="mainRole" id="">
+    <select name="mainRole" id="" value="{{user.mainRole}}">
+    {{#each searchRoleList}}
+    <option value="{{this}}">{{this}}</option>
+    {{/each}}
+
+  </select>
   <label for="">Country</label>
   <select name="country" id="" value="{{user.country}}">
       {{#each allCountriesSearch}}
@@ -31,16 +36,16 @@
 
 {{#each user}}
 
-<div>
-    <img style="width: 50px" src={{this.img}} alt="">
+<div class="user-box">
+    <img style="width: 150px" src={{this.img}} alt="">
 
     <a href="/musicianProfile/{{this._id}}">
-        Username: {{this.username}}
+        <p>Username: {{this.username}} </p>
     </a>
 
-    Location: {{this.country}}
-    Main role: {{this.mainRole}}
-    Main genre: {{this.mainGenre}}
+    <p>Location: {{this.country}}</p>
+    <p>Main role: {{this.mainRole}} </p>
+    <p>Main genre: {{this.mainGenre}} </p>
 </div>
 
 {{/each}}

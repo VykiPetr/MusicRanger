@@ -1,14 +1,13 @@
 {{#each results}}
 
-<div>
-  <img style="width: 50px" src={{this.img}} alt="">
-
+<div class="user-box">
+  <img style="width: 150px" src={{this.img}} alt="">
   <a href="/bandView/{{this._id}}">
-    Band name: {{this.bandName}}
+    <p>Band name: {{this.bandName}}</p>
   </a>
-  Main genre: {{this.mainGenre}}
-  Country: {{this.country}}
-  Band looking for: {{this.bandlookingfor}}
+  <p>Main genre: {{this.mainGenre}}</p>
+  <p>Country: {{this.country}}</p>
+  <p>Band looking for: {{this.bandlookingfor}}</p>
 
 </div>
 
