@@ -1,35 +1,35 @@
 <p>Don't forget to make yourself visible in the settings!</p>
 <div>
-    <div>
-        <form action="/searchMusiciansResults" method="GET">
-            <label for="">Genre</label>
-            <input type="text" name="mainGenre" id="">
-            <label for="">Role</label>
-            <input type="text" name="mainRole" id="">
-            <label for="">Country</label>
-            <select name="country" id="" value="{{user.country}}">
-                {{#each allCountriesSearch}}
-                <option value="{{this}}">{{this}}</option>
-                {{/each}}
-            </select>
-            <label for="">City</label>
-            <input type="text" name="city" id="">
+  <div>
+    <form action="/searchMusiciansResults" method="GET">
+      <label for="">Genre</label>
+      <input type="text" name="mainGenre" id="">
+      <label for="">Role</label>
+      <input type="text" name="mainRole" id="">
+      <label for="">Country</label>
+      <select name="country" id="" value="{{user.country}}">
+        {{#each allCountriesSearch}}
+        <option value="{{this}}">{{this}}</option>
+        {{/each}}
+      </select>
+      <label for="">City</label>
+      <input type="text" name="city" id="">
 
-            <button type="submit">Search Musicians</button>
-        </form>
+      <button type="submit">Search Musicians</button>
+    </form>
 
-    </div>
-    {{#each listedResults}}
-    <div class="user-box">
-        <img style="width: 150px" src={{this.img}} alt="">
+  </div>
+  {{#each listedResults}}
+  <div class="user-box">
+    <img style="width: 150px" src={{this.img}} alt="">
 
-        <a href="/musicianProfile/{{this._id}}">
-            <p> Username: {{this.username}}</p>
-        </a>
+    <a href="/musicianProfile/{{this._id}}">
+      <p> Username: {{this.username}}</p>
+    </a>
 
-        <p>Country: {{this.country}}</p>
-        <p>Main role: {{this.mainRole}}</p>
-        <p>Main genre: {{this.mainGenre}}</p>
-    </div>
+    <p>Country: {{this.country}}</p>
+    <p>Main role: {{this.mainRole}}</p>
+    <p>Main genre: {{this.mainGenre}}</p>
+  </div>
 
-    {{/each}}
+  {{/each}}

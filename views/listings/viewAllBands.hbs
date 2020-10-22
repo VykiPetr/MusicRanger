@@ -1,40 +1,42 @@
 <div>
-<form action="/searchBandsResults" method="GET">
-  <label for="">Genre</label>
-  <select name="mainGenre" id="" value="{{band.mainGenre}}">
-    {{#each searchGenreList}}
-    <option value="{{this}}">{{this}}</option>
-    {{/each}}
-  </select>
-  <label for="">Band Looking for</label>
-  <input type="text" name="bandlookingfor" id="">
-  <label for="">Country</label>
-  <select name="country" id="" value="{{band.country}}">
-    {{#each allCountriesSearch}}
-    <option value="{{this}}">{{this}}</option>
-    {{/each}}
-    <option value=""></option>
-  </select>
-  <label for="">City</label>
-  <input type="text" name="city" id="">
-  
-  <button type="submit">Search Bands</button>
-</form>
+  <form action="/searchBandsResults" method="GET">
+    <label for="">Genre</label>
+    <select name="mainGenre" id="" value="{{band.mainGenre}}">
+      {{#each searchGenreList}}
+      <option value="{{this}}">{{this}}</option>
+      {{/each}}
+    </select>
+
+    <label for="">Band Looking for</label>
+    <input type="text" name="bandlookingfor" id="">
+    <label for="">Country</label>
+    <select name="country" id="" value="{{band.country}}">
+      {{#each allCountriesSearch}}
+      <option value="{{this}}">{{this}}</option>
+      {{/each}}
+      <option value=""></option>
+    </select>
+    <label for="">City</label>
+    <input type="text" name="city" id="">
+
+    <button type="submit">Search Bands</button>
+  </form>
 
 </div>
 
 {{#each band}}
 
 <div class="user-box">
-    <img style="width: 150px" src={{this.img}} alt="">
+  <img style="width: 150px" src={{this.img}} alt="">
 
-    <a href="/bandView/{{this._id}}">
-        <p>Band Name: {{this.bandName}}</p>
-    </a>
-    <p>Location: {{this.country}}</p>
-    <p>Main genre: {{this.mainGenre}}</p>
-    <p>Band looking for: {{#each this.bandlookingfor}}<p>{{this}}</p>{{/each}}</p>
-    
+  <a href="/bandView/{{this._id}}">
+    <p>Band Name: {{this.bandName}}</p>
+  </a>
+  <p>Location: {{this.country}}</p>
+  <p>Main genre: {{this.mainGenre}}</p>
+  <p>Band looking for: {{#each this.bandlookingfor}}
+  <p>{{this}}</p>{{/each}}</p>
+
 </div>
 
 {{/each}}

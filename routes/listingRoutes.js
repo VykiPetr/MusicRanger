@@ -44,7 +44,7 @@ router.get("/searchMusiciansResults", (req, res, next) => {
       }
     }
     console.log(listedResults)
-    res.render("listings/searchMusiciansResults", { listedResults , loggedInUser});
+    res.render("listings/searchMusiciansResults", { listedResults , loggedInUser, allCountriesSearch, searchGenreList, searchRoleList});
   });
   
   //res.send(req.query)
@@ -76,7 +76,7 @@ router.get("/searchBandsResults", (req, res, next) => {
   }
   bandModel.find(searchParams)
   .then((results) => {
-    res.render("listings/searchBandResults", { results , loggedInUser});
+    res.render("listings/searchBandResults", { results , loggedInUser,allCountriesSearch, searchGenreList, searchRoleList});
   });
 });
 
