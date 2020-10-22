@@ -82,7 +82,7 @@ router.post('/createBand', (req, res) => {
         .catch((err) => console.log('error in updating the users band links in /createband model.create ', err))
     })
     .catch((err) => {
-      res.status(500).render('bands/createBand', {message: 'Please select a different band name, band name already in use', loggedInUser})
+      res.status(500).render('bands/createBand.hbs', {message: 'Please select a different band name, band name already in use', loggedInUser})
       return
     })
 })
@@ -94,7 +94,7 @@ router.get('/bandEdit/:id', (req, res) => {
     .then((bandData) => {
       bandData.bandstructure.forEach((e) => e.bandId = bandId)
       bandData.bandlookingfor.forEach((e) => e.bandId = bandId)
-      res.render('bands/bandEdit', {
+      res.render('bands/bandEdit.hbs', {
         bandData,
         loggedInUser,allCountries
       })
@@ -150,8 +150,8 @@ router.get('/bandDelete/:id', (req, res) => {
 router.get('/bandView/:id', (req, res) => {
   let bandId = req.params.id
   let loggedInUser = req.session.loggedInUser
-  res.render('bands/bandView', {
-    loggedInUser
+  res.render('bands/bandView.hbs', {
+    loggedInUser, layout: true
   })
 
 })
@@ -159,7 +159,7 @@ router.get('/bandView/:id', (req, res) => {
 router.get('/manageBands/:id/addMember', (req, res) => {
   let bandId = req.params.id
   let loggedInUser = req.session.loggedInUser
-  res.render('bands/addBandMember', {
+  res.render('bands/addBandMember.hbs', {
     bandId,
     loggedInUser
   })
@@ -177,7 +177,7 @@ router.get('/manageBands/:id/addMember/search', (req, res) => {
     .then((user) => {
       //Jorge style cheat
       user.forEach((e) => e.bandId = bandId)
-      res.render('bands/addBandMember', {
+      res.render('bands/addBandMember.hbs', {
         bandId,
         loggedInUser,
         user
@@ -245,7 +245,7 @@ router.get("/manageBands/:bandId/addMember/:userId", (req, res) => {
 router.get('/manageBands/:id/addMissing', (req, res) => {
   let loggedInUser = req.session.loggedInUser
   let bandId = req.params.id
-  res.render('bands/addMissing', {
+  res.render('bands/addMissing.hbs', {
     bandId,
     loggedInUser
   })
