@@ -37,6 +37,7 @@ router.get('/managebands/createBand', (req, res) => {
 })
 
 router.post('/createBand', (req, res) => {
+  let loggedInUser = req.session.loggedInUser
   let {
     bandName,
     img,
@@ -47,6 +48,8 @@ router.post('/createBand', (req, res) => {
     city,
   } = req.body
   let user = req.session.loggedInUser
+
+  if (!img){ img = "https://cdn.shopify.com/s/files/1/2929/5648/files/my-band_large.jpg?v=1531312528"}
 
   bandModel.create({
       bandName,
@@ -74,7 +77,10 @@ router.post('/createBand', (req, res) => {
         .then(() => res.redirect('/managebands'))
         .catch((err) => console.log('error in updating the users band links in /createband model.create ', err))
     })
-    .catch((err) => console.log("Error in create band ", err))
+    .catch((err) => {
+      res.status(500).render('bands/createBand', {message: 'Please select a different band name, band name already in use', loggedInUser})
+      return
+    })
 })
 
 router.get('/bandEdit/:id', (req, res) => {
@@ -113,7 +119,8 @@ router.post('/bandEdit/:id', (req, res) => {
       country,
       city
     })
-    .then(() => {
+    .then((band) => {
+      band.bandlookingfor.forEach((e) => e.bandId[bandId])
       res.redirect(`/bandEdit/${bandId}`)
     })
 })
@@ -251,7 +258,6 @@ router.post('/manageBands/:id/addMissing', (req, res) => {
       bandId, {
         $push: {
           bandlookingfor: role
-
         }
       })
     .then(() => {
@@ -299,6 +305,10 @@ router.get('/removeMissing/:bandId/:role', (req, res) => {
   let loggedInUser = req.session.loggedInUser
   let bandId = req.params.bandId
   let role = req.params.role
+  bandModel.findByIdAndUpdate(bandId, {$pull: { bandlookingfor: role }})
+    .then(()=>{
+      res.redirect(`/bandEdit/${bandId}`)
+    })
 })
 
 module.exports = router;

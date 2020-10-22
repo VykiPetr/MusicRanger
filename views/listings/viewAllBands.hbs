@@ -16,15 +16,15 @@
 
 {{#each band}}
 
-<div>
-    <img style="width: 50px" src={{this.img}} alt="">
+<div class="user-box">
+    <img style="width: 150px" src={{this.img}} alt="">
 
     <a href="/bandView/{{this._id}}">
-        Band Name: {{this.bandName}}
+        <p>Band Name: {{this.bandName}}</p>
     </a>
-    Location: {{this.country}}
-    Main genre: {{this.mainGenre}}
-    Band looking for: {{#each this.bandlookingfor}}<p>{{this}}</p>{{/each}}
+    <p>Location: {{this.country}}</p>
+    <p>Main genre: {{this.mainGenre}}</p>
+    <p>Band looking for: {{#each this.bandlookingfor}}<p>{{this}}</p>{{/each}}</p>
     
 </div>
 
