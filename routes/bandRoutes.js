@@ -8,7 +8,8 @@ const {
   render
 } = require('../app');
 let {allCountries} = require('../lib/countriesList');
-let {mainRoleList} = require('../lib/mainRoleList')
+let {mainRoleList} = require('../lib/mainRoleList');
+let {mainGenreList} = require('../lib/mainGenreList');
 
 
 router.get('/managebands', (req, res) => {
