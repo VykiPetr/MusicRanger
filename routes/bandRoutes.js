@@ -37,6 +37,7 @@ router.get('/managebands/createBand', (req, res) => {
 })
 
 router.post('/createBand', (req, res) => {
+  let loggedInUser = req.session.loggedInUser
   let {
     bandName,
     img,
@@ -74,7 +75,10 @@ router.post('/createBand', (req, res) => {
         .then(() => res.redirect('/managebands'))
         .catch((err) => console.log('error in updating the users band links in /createband model.create ', err))
     })
-    .catch((err) => console.log("Error in create band ", err))
+    .catch((err) => {
+      res.status(500).render('bands/createBand', {message: 'Please select a different band name, band name already in use', loggedInUser})
+      return
+    })
 })
 
 router.get('/bandEdit/:id', (req, res) => {

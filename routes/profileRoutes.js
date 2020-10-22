@@ -38,7 +38,7 @@ router.get("/updateProfile", (req, res) => {
         .findOne({ userrefid: userId })
         .then((detailsData) => {
           console.log("details model data: ", detailsData);
-          res.render("profiles/updateProfile", { userDataMain, detailsData, allCountries });
+          res.render("profiles/updateProfile", { userDataMain, detailsData, allCountries, loggedInUser });
         })
         .catch((err) =>
           //console.log("error in updateProfile userDetailsModel.findOne ", err)
@@ -118,8 +118,10 @@ router.get("/musicianProfile/:id", (req, res) => {
     return;
   }
   let id = req.params.id;
+  //finding the main user model
   userModel.findById(id)
   .then((userProfile) => {
+    //getting the user details by refferencing their id in the details model
     UserDetailsModel.findOne({ userrefid: id })
     .populate('bandurllinks')
     .then((detailsData) => {
@@ -142,7 +144,7 @@ router.get("/bandView/:id", (req, res) => {
   }
   
   let id = req.params.id;
-
+  //finding the required band profile by the id from the url using the model
   bandModel.findById(id)
   .then((bandProfile) => {
     res.render("bands/bandView", { bandProfile, loggedInUser });

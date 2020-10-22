@@ -52,7 +52,7 @@ router.post('/signup', (req, res) => {
                     username: username,
                     email: email,
                     password: hashedPassword,
-                    img: "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png"
+                    img: "https://image-cdn.neatoshop.com/styleimg/53216/none/red/default/333247-20;1480539702v.jpg"
                   })
                   .then((userData) => {
                     userDetailsModel.create({
