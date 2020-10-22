@@ -6,113 +6,133 @@ const userDetailsModel = require('../models/UserDetails.model')
 
 
 router.get('/signup', (req, res) => {
-    res.render('auth/signup.hbs')
+  res.render('auth/signup.hbs')
 })
 
 router.post('/signup', (req, res) => {
-    const {
-        username,
-        email,
-        password
-    } = req.body
+  const {
+    username,
+    email,
+    password
+  } = req.body
 
-    if (!username || !email || !password) {
-        res.status(500).render('auth/signup', {
-            message: 'Please enter your details'
-        })
-        return;
-    }
+  if (!username || !email || !password) {
+    res.status(500).render('auth/signup', {
+      message: 'Please enter your details'
+    })
+    return;
+  }
 
-    let emailReg = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
-        if (!emailReg.test(email)) {
-        res.status(500).render('auth/signup', {message: 'Please enter valid email'})
-        return;
-    }
+  let emailReg = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+  if (!emailReg.test(email)) {
+    res.status(500).render('auth/signup', {
+      message: 'Please enter valid email'
+    })
+    return;
+  }
 
-    let passwordReg = new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/)
-        if (!passwordReg.test(password)) {
-        res.status(500).render('auth/signup', {message: 'Password must have one lowercase, one uppercase, a number, a special character and must be at least 8 characters long'})
-        return; 
-    }
+  let passwordReg = new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,25}$/)
+  if (!passwordReg.test(password)) {
+    res.status(500).render('auth/signup', {
+      message: 'Password must have one lowercase, one uppercase, a number, a special character and must be at least 8 characters long'
+    })
+    return;
+  }
 
-    userModel.findOne({
-            username
-        })
-        .then((data) => {
-            if (!data) {
-                bcrypt.genSalt(10)
-                    .then((salt) => {
-                        bcrypt.hash(password, salt)
-                            .then((hashedPassword) => {
-                                userModel.create({
-                                        username: username,
-                                        email: email,
-                                        password: hashedPassword
-                                    })
-                                    .then((userData) => {
-                                        userDetailsModel.create({userrefid:userData._id})
-                                            .then(()=>{
-                                                res.redirect('/')
-                                            })
-                                    })
-                                    .catch(() => {
-                                        console.log('error in UserModel.Create')
-                                        res.status(500).render('auth/signup.hbs', {
-                                            message: 'Email already used, please choose a different email'
-                                        })
-                                        return
-                                    })
-                            })
-                            .catch(() => console.log('error in hashedpassword'))
+  userModel.findOne({
+      username
+    })
+    .then((data) => {
+      if (!data) {
+        bcrypt.genSalt(10)
+          .then((salt) => {
+            bcrypt.hash(password, salt)
+              .then((hashedPassword) => {
+                userModel.create({
+                    username: username,
+                    email: email,
+                    password: hashedPassword,
+                    img: "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png"
+                  })
+                  .then((userData) => {
+                    userDetailsModel.create({
+                        userrefid: userData._id
+                      })
+                      .then(() => {
+                        console.log('userData after you signup button pressed '.userData)
+                        req.session.loggedInUser = userData
+                        res.redirect('/dashboard')
+                      })
+                  })
+                  .catch(() => {
+                    console.log('error in UserModel.Create')
+                    res.status(500).render('auth/signup.hbs', {
+                      message: 'Email already used, please choose a different email'
                     })
-                    .catch(() => console.log('Error in genSalt'))
-            } else {
-                res.status(500).render('auth/signup.hbs', {
-                    message: 'Username already used, please choose a different username'
-                })
-                return
-            }
+                    return
+                  })
+              })
+              .catch(() => console.log('error in hashedpassword'))
+          })
+          .catch(() => console.log('Error in genSalt'))
+      } else {
+        res.status(500).render('auth/signup.hbs', {
+          message: 'Username already used, please choose a different username'
         })
-        .catch(() => console.log('Failed in post/signup usermodel.findOne'))
+        return
+      }
+    })
+    .catch(() => console.log('Failed in post/signup usermodel.findOne'))
 })
 router.get('/login', (req, res) => {
-    res.render('auth/login')
+  res.render('auth/login')
 })
 
 router.post('/login', (req, res) => {
-    const {email, password} = req.body
+  const {
+    email,
+    password
+  } = req.body
 
-    if (!email || !password) {
+  if (!email || !password) {
+    res.status(500).render('auth/login', {
+      message: 'Please check your details'
+    })
+    return;
+  }
+
+  userModel.findOne({
+      email: email
+    })
+    .then((userData) => {
+      if (!userData) {
         res.status(500).render('auth/login', {
-            message: 'Please check your details'
+          message: 'User does not eist'
         })
         return;
-    }
-
-    userModel.findOne({email:email})
-       .then((userData)=>{
-        if (!userData) {
-            res.status(500).render('auth/login', {message: 'User does not eist'})
+      }
+      bcrypt.compare(password, userData.password)
+        .then((result) => {
+          if (result) {
+            req.session.loggedInUser = userData
+            res.redirect('/dashboard')
             return;
-        }
-        bcrypt.compare(password, userData.password)
-            .then((result)=>{
-                if (result) {
-                    req.session.loggedInUser = userData
-                    res.redirect('/dashboard')
-                    return;
-                } else {
-                    res.status(500).render('auth/login', {message: 'Password does not match'})
-                }
+          } else {
+            res.status(500).render('auth/login', {
+              message: 'Password does not match'
             })
-       })
+          }
+        })
+    })
 })
 
 
 
-router.get('/logout', (req, res)=>{
-    req.session.destroy()
-    res.render('auth/login.hbs', {message: 'logged out succesfully'})
+router.get('/logout', (req, res) => {
+  req.session.destroy()
+  res.render('auth/login.hbs', {
+    message: 'logged out succesfully'
+  })
 })
 
 

@@ -45,10 +45,18 @@ footer {
   flex-direction: column;
 }
 
-.nav-logo {
-  width: 25%;
-  justify-content: left ;
-}
+
+
+
+
+
+.nav-logo img{
+  width: 100%;
+ }
+ .nav-logo{
+   width: 500px;
+ }
+
 
 .nav-bar {
   background-image: url('../images/navBackground.png');
@@ -56,6 +64,8 @@ footer {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  align-items: center;
+  height: fit-content;
 }
 
 .nav-bar .nav-buttons{

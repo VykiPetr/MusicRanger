@@ -18,6 +18,15 @@
             <h4>Sub-genre:</h4> {{detailsData.subGenre}}
         </div>
         <div>
+            <h3>{{userProfile.username}} is a member of these bands</h3>
+            {{#each bands}}
+            <div>
+              <img style="width: 50px" src="{{this.img}}" alt="">
+              <a href="/bandView/{{this._id}}"><h5>{{this.bandName}}</h5></a> 
+            </div>
+            {{/each}}
+        </div>
+        <div>
             <h4>My Social Media Links</h4>
             <a href={{detailsData.facebookurl}}>
                 <img style="width: 50px"

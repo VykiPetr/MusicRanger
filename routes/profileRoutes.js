@@ -121,10 +121,13 @@ router.get("/musicianProfile/:id", (req, res) => {
   userModel.findById(id)
   .then((userProfile) => {
     UserDetailsModel.findOne({ userrefid: id })
+    .populate('bandurllinks')
     .then((detailsData) => {
+      let bands = detailsData.bandurllinks
       res.render("profiles/musicianProfileDetail", {
         userProfile,
         detailsData,
+        bands,
         loggedInUser,
       });
     });

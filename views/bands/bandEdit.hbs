@@ -25,7 +25,7 @@
     <h3>Add a band member</h3>
     {{#each bandData.bandstructure}}
     {{#if this.profileId}}
-    <div><a href="/showprofile/{{this.profileId}}">{{this.name}}</a>, does {{this.role}} <button><a href="/removeMember/{{this.bandId}}/{{this.profileId}}">  Remove member  </a></button></div>
+    <div><a href="/musicianProfile/{{this.profileId}}">{{this.name}}</a>, does {{this.role}} <button><a href="/removeMember/{{this.bandId}}/{{this.profileId}}">  Remove member  </a></button></div>
     {{else}}
     <div>{{this.name}}, does {{this.role}} <a href="/removeMember/{{this.bandId}}/{{this.name}}"><button>Remove member</button></a></div>
     {{/if}}

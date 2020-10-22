@@ -1,5 +1,5 @@
-<div>Profile page of  {{bandProfile.bandName}}</div>
-<div>
+<div>Profile page of {{bandProfile.bandName}}</div>
+<div >
     <div>
         <img style="width: 100px" src={{bandProfile.img}} alt="">
         <div>
@@ -7,12 +7,19 @@
             <h5>About Us</h5>
             <p>{{bandProfile.description}}</p>
         </div>
-        
         <div>
-            <h4>Main genre:</h4> {{bandProfile.mainGenre}}
-            <h4>Sub-genre:</h4> {{bandProfile.subGenre}}
+            <h3>Our members</h3>
+            {{#each bandProfile.bandstructure}}
+            <div>
+                <a href="/musicianProfile/{{this.profileId}}">{{this.name}}</a> Who does {{this.role}}
+            </div>
+            {{/each}}
         </div>
-        
+        <div>
+            <h4>Main genre</h4> {{bandProfile.mainGenre}}
+            <h4>Other genres</h4> {{bandProfile.subGenre}}
+        </div>
+
         <div>
             <h4>Location</h4>
             Country: {{bandProfile.country}}

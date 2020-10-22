@@ -32,16 +32,20 @@ footer {
   display: flex;
   flex-direction: column; }
 
+.nav-logo img {
+  width: 100%; }
+
 .nav-logo {
-  width: 25%;
-  justify-content: left; }
+  width: 500px; }
 
 .nav-bar {
   background-image: url("../images/navBackground.png");
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-evenly; }
+  justify-content: space-evenly;
+  align-items: center;
+  height: fit-content; }
 
 .nav-bar .nav-buttons {
   width: 100px;
