@@ -40,7 +40,7 @@ router.get("/updateProfile", (req, res) => {
         .findOne({ userrefid: userId })
         .then((detailsData) => {
           console.log("details model data: ", detailsData);
-          res.render("profiles/updateProfile", { userDataMain, detailsData, allCountries, mainRoleList, mainGenreList });
+          res.render("profiles/updateProfile", { loggedInUser, userDataMain, detailsData, allCountries, mainRoleList, mainGenreList });
         })
         .catch((err) =>
           //console.log("error in updateProfile userDetailsModel.findOne ", err)
