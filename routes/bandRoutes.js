@@ -7,6 +7,7 @@ const bandModel = require('../models/Band.model');
 const {
   render
 } = require('../app');
+let {allCountries} = require('../lib/countriesList');
 
 
 router.get('/managebands', (req, res) => {
@@ -32,7 +33,7 @@ router.get('/managebands/createBand', (req, res) => {
   let userId = req.session.loggedInUser._id
   let loggedInUser = req.session.loggedInUser
   res.render('bands/createband.hbs', {
-    loggedInUser
+    loggedInUser, allCountries
   })
 })
 
@@ -48,6 +49,8 @@ router.post('/createBand', (req, res) => {
   } = req.body
   let user = req.session.loggedInUser
 
+    console.log(bandName)
+
   bandModel.create({
       bandName,
       img,
@@ -61,7 +64,9 @@ router.post('/createBand', (req, res) => {
         profileId: user._id,
         role: user.mainRole
       }]
-    })
+    }, 
+    //runValidators is not needed for creating. 
+    )
     .then((data) => {
       console.log(data)
       userDetailsModel.findOneAndUpdate({
@@ -86,7 +91,7 @@ router.get('/bandEdit/:id', (req, res) => {
       bandData.bandlookingfor.forEach((e) => e.bandId = bandId)
       res.render('bands/bandEdit', {
         bandData,
-        loggedInUser
+        loggedInUser,allCountries
       })
     })
     .catch((err) => console.log('error in fetching band data on edit ', err))
@@ -112,7 +117,7 @@ router.post('/bandEdit/:id', (req, res) => {
       subGenre,
       country,
       city
-    })
+    }, {new: true, runValidators: true})
     .then(() => {
       res.redirect(`/bandEdit/${bandId}`)
     })

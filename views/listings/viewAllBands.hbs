@@ -5,7 +5,12 @@
   <label for="">Band Looking for</label>
   <input type="text" name="bandlookingfor" id="">
   <label for="">Country</label>
-  <input type="text" name="country" id="">
+  <select name="country" id="" value="{{band.country}}">
+    {{#each allCountriesSearch}}
+    <option value="{{this}}">{{this}}</option>
+    {{/each}}
+    <option value=""></option>
+  </select>
   <label for="">City</label>
   <input type="text" name="city" id="">
   

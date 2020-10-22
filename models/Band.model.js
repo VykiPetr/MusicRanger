@@ -32,7 +32,7 @@ const bandSchema = new mongoose.Schema({
     }],
     mainGenre: {
         type: String,
-        // enum: allRoles
+        // enum: allGenres
     },
     subGenre: String,
 })

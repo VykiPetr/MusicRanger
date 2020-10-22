@@ -78,7 +78,7 @@ router.post("/updateProfile", (req, res) => {
     .findByIdAndUpdate(
       userId,
       { username, img, mainGenre, mainRole, country, listed },
-      { new: true, runValidators:true }
+      { new: true, runValidators:true } //run validators used for allCountries enum. 
     )
     .then((userData) => {
       userDetailsModel
