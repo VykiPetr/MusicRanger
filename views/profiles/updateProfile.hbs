@@ -11,13 +11,25 @@
     <input name="img" type="text" placeholder="paste image link" value="{{userDataMain.img}}">
 
     <label>Main genre</label>
-    <input name="mainGenre" type="text" placeholder="Punk" value="{{userDataMain.mainGenre}}">
+    <select name="mainGenre" id="">
+        <option value="{{userDataMain.mainGenre}}">{{userDataMain.mainGenre}}</option>
+        {{#each mainGenreList}}
+        <option value="{{this}}">{{this}}</option>
+        {{/each}}
+    </select>
+    {{!--<input name="mainGenre" type="text" placeholder="Punk" value="{{userDataMain.mainGenre}}"> --}}
 
     <label>Other genres</label>
     <input name="subGenre" type="text" placeholder="Anything else" value="{{detailsData.subGenre}}">
 
     <label>Main role</label>
-    <input name="mainRole" type="text" placeholder="Vocals" value="{{userDataMain.mainRole}}">
+    <select name="mainRole" id="">
+        <option value="{{userDataMain.mainRole}}">{{userDataMain.mainRole}}</option>
+        {{#each mainRoleList}}
+        <option value="{{this}}">{{this}}</option>
+        {{/each}}
+    </select>
+    
 
     <label>Sub roles</label>
     <input name="subRole" type="text" placeholder="Triangle, guitar" value="{{detailsData.subRole}}">

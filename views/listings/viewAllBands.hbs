@@ -1,7 +1,11 @@
 <div>
 <form action="/searchBandsResults" method="GET">
   <label for="">Genre</label>
-  <input type="text" name="mainGenre" id="">
+  <select name="mainGenre" id="" value="{{band.mainGenre}}">
+    {{#each searchGenreList}}
+    <option value="{{this}}">{{this}}</option>
+    {{/each}}
+  </select>
   <label for="">Band Looking for</label>
   <input type="text" name="bandlookingfor" id="">
   <label for="">Country</label>

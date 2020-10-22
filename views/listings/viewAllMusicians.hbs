@@ -1,9 +1,20 @@
 <div>
     <form action="/searchMusiciansResults" method="GET">
-  <label for="">Genre</label>
-  <input type="text" name="mainGenre" id="">
+    <label for="">Genre</label>
+    <select name="mainGenre" id="" value="{{user.mainGenre}}">
+    {{#each searchGenreList}}
+    <option value="{{this}}">{{this}}</option>
+    {{/each}}
+
+  </select>
+  
   <label for="">Role</label>
-  <input type="text" name="mainRole" id="">
+    <select name="mainRole" id="" value="{{user.mainRole}}">
+    {{#each searchRoleList}}
+    <option value="{{this}}">{{this}}</option>
+    {{/each}}
+
+  </select>
   <label for="">Country</label>
   <select name="country" id="" value="{{user.country}}">
       {{#each allCountriesSearch}}

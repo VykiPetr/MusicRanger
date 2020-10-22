@@ -6,6 +6,8 @@ const userDetailsModel = require("../models/UserDetails.model");
 const UserDetailsModel = require("../models/UserDetails.model");
 const bandModel = require("../models/Band.model");
 let {allCountries} = require('../lib/countriesList');
+let {mainRoleList} = require('../lib/mainRoleList');
+let {mainGenreList} = require('../lib/mainGenreList');
 
 router.get("/dashboard", (req, res) => {
   if (!req.session.loggedInUser) {
@@ -38,7 +40,7 @@ router.get("/updateProfile", (req, res) => {
         .findOne({ userrefid: userId })
         .then((detailsData) => {
           console.log("details model data: ", detailsData);
-          res.render("profiles/updateProfile", { userDataMain, detailsData, allCountries, loggedInUser });
+          res.render("profiles/updateProfile", { userDataMain, detailsData, allCountries, mainRoleList, mainGenreList });
         })
         .catch((err) =>
           //console.log("error in updateProfile userDetailsModel.findOne ", err)

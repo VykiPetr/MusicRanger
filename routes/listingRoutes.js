@@ -6,11 +6,16 @@ const userDetailsModel = require("../models/UserDetails.model");
 const bandModel = require("../models/Band.model");
 let {allCountries} = require('../lib/countriesList');
 let {allCountriesSearch} = require('../lib/countriesSearchList')
+let {searchRoleList} = require('../lib/searchRoleList')
+let {searchGenreList} = require('../lib/searchGenreList')
+
 
 router.get("/musicianListings", (req, res) => {
   let loggedInUser = req.session.loggedInUser;
-  userModel.find({ listed: true }).then((user) => {
-    res.render("listings/viewAllMusicians", { user, loggedInUser, allCountriesSearch });
+  console.log(searchGenreList)
+  userModel.find({ listed: true })
+  .then((user) => {
+    res.render("listings/viewAllMusicians", { user, loggedInUser, allCountriesSearch, searchGenreList, searchRoleList });
   });
 });
 
@@ -49,7 +54,7 @@ router.get("/bandListings", (req, res) => {
   let loggedInUser = req.session.loggedInUser;
   bandModel.find()
   .then((band) => {
-    res.render("listings/viewAllBands", { band, loggedInUser, allCountriesSearch });
+    res.render("listings/viewAllBands", { band, loggedInUser, allCountriesSearch, searchGenreList, searchRoleList });
   });
 });
 
