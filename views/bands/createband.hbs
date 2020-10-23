@@ -14,7 +14,11 @@
     <input name="description" type="text">
 
     <label>Main Band genre</label>
-    <input name="mainGenre" type="text">
+    <select name="mainGenre" id="" value="{{data.mainGenre}}">
+        {{#each mainGenreList}}
+        <option value="{{this}}">{{this}}</option>
+        {{/each}}
+    </select>
 
     <label>Other Band genres</label>
     <input name="subGenre" type="text">

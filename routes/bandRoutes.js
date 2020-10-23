@@ -35,7 +35,7 @@ router.get('/managebands/createBand', (req, res) => {
   let userId = req.session.loggedInUser._id
   let loggedInUser = req.session.loggedInUser
   res.render('bands/createband.hbs', {
-    loggedInUser, allCountries
+    loggedInUser, allCountries, mainRoleList, mainGenreList
   })
 })
 
@@ -97,7 +97,7 @@ router.get('/bandEdit/:id', (req, res) => {
       bandData.bandlookingfor.forEach((e) => e.bandId = bandId)
       res.render('bands/bandEdit.hbs', {
         bandData,
-        loggedInUser,allCountries
+        loggedInUser,allCountries, mainGenreList, mainRoleList
       })
     })
     .catch((err) => console.log('error in fetching band data on edit ', err))
