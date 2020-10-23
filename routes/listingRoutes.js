@@ -12,7 +12,6 @@ let {searchGenreList} = require('../lib/searchGenreList')
 
 router.get("/musicianListings", (req, res) => {
   let loggedInUser = req.session.loggedInUser;
-  console.log(searchGenreList)
   userModel.find({ listed: true })
   .then((user) => {
     res.render("listings/viewAllMusicians", { user, loggedInUser, allCountriesSearch, searchGenreList, searchRoleList });

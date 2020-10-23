@@ -34,16 +34,10 @@ router.get("/updateProfile", (req, res) => {
   userModel
     .findById(userId)
     .then((userDataMain) => {
-      console.log("usermodel main data: ", userDataMain);
       userDetailsModel
         .findOne({ userrefid: userId })
         .then((detailsData) => {
-<<<<<<< HEAD
-          console.log("details model data: ", detailsData);
-          res.render("profiles/updateProfile", { loggedInUser, userDataMain, detailsData, allCountries, mainRoleList, mainGenreList });
-=======
           res.render("profiles/updateProfile", { userDataMain, detailsData, allCountries, mainRoleList, mainGenreList });
->>>>>>> c24141ad207041a702afb8dddfdbc9aae44b0b83
         })
         .catch((err) =>
           res.redirect('/updateProfile')

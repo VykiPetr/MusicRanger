@@ -20,10 +20,6 @@ router.get('/managebands', (req, res) => {
     })
     .populate('bandurllinks')
     .then((userDetailData) => {
-<<<<<<< HEAD
-      console.log(userDetailData) 
-=======
->>>>>>> c24141ad207041a702afb8dddfdbc9aae44b0b83
       let bands = userDetailData.bandurllinks
       res.render('bands/manageBands.hbs', {
         userDetailData,
@@ -175,7 +171,6 @@ router.get('/manageBands/:id/addMember/search', (req, res) => {
   let {
     name
   } = req.body
-  console.log(search)
   userModel.find(search)
     .then((user) => {
       //Jorge style cheat
@@ -249,9 +244,6 @@ router.get('/removeMember/:bandId/:userId', (req, res) => {
   let loggedInUser = req.session.loggedInUser
   let bandId = req.params.bandId
   let userId = req.params.userId
-  console.log(bandId)
-  console.log(userId)
-  console.log('remove button clicked')
   userDetailsModel.updateOne({
       userrefid: userId
     }, {

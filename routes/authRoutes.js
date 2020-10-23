@@ -59,7 +59,7 @@ router.post('/signup', (req, res) => {
                         userrefid: userData._id
                       })
                       .then(() => {
-                        console.log('userData after you signup button pressed '.userData)
+      
                         req.session.loggedInUser = userData
                         res.redirect('/dashboard')
                       })
