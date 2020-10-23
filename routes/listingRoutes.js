@@ -76,7 +76,7 @@ router.get("/searchBandsResults", (req, res, next) => {
   }
   bandModel.find(searchParams)
   .then((results) => {
-    res.render("listings/searchBandResults", { results , loggedInUser,allCountriesSearch, searchGenreList, searchRoleList});
+    res.render("listings/searchBandResults", { results , loggedInUser, allCountriesSearch, searchGenreList, searchRoleList});
   });
 });
 
