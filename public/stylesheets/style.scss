@@ -49,11 +49,6 @@ footer {
   flex-direction: column;
 }
 
-
-
-
-
-
 .nav-logo img{
   width: 100%;
  }
@@ -113,10 +108,11 @@ footer {
   width: 250px;
 }
 
+#container {
+  padding: 15px;
+}
+
 .dashboard-cont{
-  
-  width: 65%;
-  background-color: #fcfcfc;
   height: 100%;
   display: flex;
   flex-direction: row;

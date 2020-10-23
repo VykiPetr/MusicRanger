@@ -1,20 +1,28 @@
-{{#if message}}
-<div id="landing">
- <h1>{{message}}</h1>
-</div>
-{{/if}}
-{{#if loggedInUser}}
-<div id="landing">
- <h3>Welcome to MusicRanger</h3>
-</div>
-{{else}}
-<div id="landing">
-  <h3>Welcome to MusicRanger</h3>
-  <div>
-    <p>To proceed to the site please</p>
-    <a id="anchorIndex" href="/signup" class="indexButtons"><button type="button" class="btn btn-outline-danger indexBtn"> <p> Sign Up </p> </button> </a>
-    <p>Already signed up?</p>
-    <a id="anchorIndex" href="/login" class="indexButtons"> <button type="button" class="btn btn-outline-danger indexBtn"> <p> Log In </p> </button> </a>
+<div>
+  {{#if message}}
+  <div id="landing">
+    <h1>{{message}}</h1>
   </div>
+  {{/if}}
+  {{#if loggedInUser}}
+  <div id="landing">
+    <h3>Welcome to MusicRanger</h3>
+  </div>
+  {{else}}
+  <div id="landing">
+    <h3>Welcome to MusicRanger</h3>
+    <div>
+      <p>To proceed to the site please</p>
+      <a id="anchorIndex" href="/signup" class="indexButtons"><button type="button"
+          class="btn btn-outline-danger indexBtn">
+          <p> Sign Up </p>
+        </button> </a>
+      <p>Already signed up?</p>
+      <a id="anchorIndex" href="/login" class="indexButtons"> <button type="button"
+          class="btn btn-outline-danger indexBtn">
+          <p> Log In </p>
+        </button> </a>
+    </div>
+  </div>
+  {{/if}}
 </div>
-{{/if}}

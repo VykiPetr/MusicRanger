@@ -1,7 +1,12 @@
-<h1>Your bands</h1>
-<div id="manage-bands-cont">
-{{#each bands}}
-    <div>there is a band here {{this.bandName}} <a href="/bandEdit/{{this._id}}"><button>Edit</button></a><a href="/bandDelete/{{this._id}}"><button>Delete</button></a><a href="/bandView/{{this._id}}"><button>View</button></a></div> 
-{{/each}}
+<div class="signUpLogIn">
+    <h1>Your bands</h1>
+    <div id="manage-bands-cont">
+        {{#each bands}}
+        <div><h1>{{this.bandName}}</h1> <a href="/bandEdit/{{this._id}}"><button
+                    class="btn btn-danger">Edit</button></a><a href="/bandDelete/{{this._id}}"><button
+                    class="btn btn-danger">Delete</button></a><a href="/bandView/{{this._id}}"><button
+                    class="btn btn-danger">View</button></a></div>
+        {{/each}}
+    </div>
+    <a href="/managebands/createband"><button class="btn btn-danger">Create a band</button></a>
 </div>
-<a href="/managebands/createband"><button>Create a band</button></a>

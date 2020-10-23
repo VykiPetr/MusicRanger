@@ -1,6 +1,7 @@
-<div>Welcome to your dashboard {{loggedInUser.username}}</div>
-<div class="dashboard-cont">
+
+<div class="dashboard-cont" id="container">
   <div class="dash-info-cont">
+    <h4>Welcome to your dashboard {{loggedInUser.username}}</h4>
     <div class="dash-top">
       <img style="width: 100px" src={{loggedInUser.img}} alt="">
       <div>
@@ -69,8 +70,8 @@
     </div>
 
   </div>
-  <div class="dash-btn">
-    <a href="/updateProfile"><button>Update Profile</button></a>
-    <a href="/managebands"><button>Manage your Bands</button></a>
+  <div class="dash-btn" >
+    <a href="/updateProfile"><button class="btn btn-danger">Update Profile</button></a>
+    <a href="/managebands"><button class="btn btn-danger">Manage your Bands</button></a>
   </div>
 </div>

@@ -86,9 +86,10 @@ footer {
   margin: 15px;
   width: 250px; }
 
+#container {
+  padding: 15px; }
+
 .dashboard-cont {
-  width: 65%;
-  background-color: #fcfcfc;
   height: 100%;
   display: flex;
   flex-direction: row;

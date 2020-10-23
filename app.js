@@ -1,5 +1,5 @@
 require('dotenv').config();
-////
+
 const bodyParser   = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express      = require('express');
@@ -9,7 +9,7 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 
-//fix merge
+
 
 require('./config/db.config')
 
@@ -18,11 +18,12 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
-// Cookies/Sessions
-
 //allows use to use express session
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+
+// Cookies/Sessions
+
 
 app.use(session({
   secret: 'bybys',
@@ -60,8 +61,14 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'MusicRanger';
 
+
+//Making sure the user stays logged out after they log out
+app.use(function(req, res, next) {
+  res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+  next();
+});
 
 
 const index = require('./routes/index');

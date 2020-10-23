@@ -1,4 +1,4 @@
-<form id="update-form" method="POST" action="/bandEdit/{{bandData._id}}">
+<form class="signUpLogIn" method="POST" action="/bandEdit/{{bandData._id}}">
 
     <label>Band name</label>
     <input required name="bandName" type="text" value="{{bandData.bandName}}">
@@ -33,18 +33,18 @@
     <h3>Add a band member</h3>
     {{#each bandData.bandstructure}}
     {{#if this.profileId}}
-    <div><a href="/musicianProfile/{{this.profileId}}">{{this.name}}</a>, does {{this.role}} <button><a href="/removeMember/{{this.bandId}}/{{this.profileId}}">  Remove member  </a></button></div>
+    <div><a href="/musicianProfile/{{this.profileId}}">{{this.name}}</a>, does {{this.role}} <button class="btn btn-danger"><a id="anchor" href="/removeMember/{{this.bandId}}/{{this.profileId}}">  Remove member  </a></button></div>
     {{else}}
-    <div>{{this.name}}, does {{this.role}} <a href="/removeMember/{{this.bandId}}/{{this.name}}"><button>Remove member</button></a></div>
+    <div>{{this.name}}, does {{this.role}} <a id="anchor" href="/removeMember/{{this.bandId}}/{{this.name}}"><button>Remove member</button></a></div>
     {{/if}}
     {{/each}}
-    <a href="/manageBands/{{bandData._id}}/addMember"><button type="button">Add a band member</button></a>
+    <a href="/manageBands/{{bandData._id}}/addMember"><button type="button" class="btn btn-danger">Add a band member</button></a>
 
     <h3>Missing someone in your band? Start searching!</h3>
     {{#each bandData.bandlookingfor}}
-    <div>{{this}} <button><a href="/removeMissing/{{this.bandId}}/{{this}}">Delete missing</a></button></div>
+    <div>{{this}} <button class="btn btn-danger"><a id="anchor" href="/removeMissing/{{this.bandId}}/{{this}}">Delete missing</a></button></div>
     {{/each}}
-    <a href="/manageBands/{{bandData._id}}/addMissing"><button type="button">Add a missing spot</button></a>
+    <a href="/manageBands/{{bandData._id}}/addMissing"><button type="button" class="btn btn-danger">Add a missing spot</button></a>
 
-    <button type="submit">Save edits</button>
+    <button class="btn btn-danger" type="submit">Save edits</button>
 </form> 
