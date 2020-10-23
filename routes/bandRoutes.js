@@ -20,7 +20,10 @@ router.get('/managebands', (req, res) => {
     })
     .populate('bandurllinks')
     .then((userDetailData) => {
+<<<<<<< HEAD
       console.log(userDetailData) 
+=======
+>>>>>>> c24141ad207041a702afb8dddfdbc9aae44b0b83
       let bands = userDetailData.bandurllinks
       res.render('bands/manageBands.hbs', {
         userDetailData,
@@ -71,7 +74,6 @@ router.post('/createBand', (req, res) => {
     //runValidators is not needed for creating. 
     )
     .then((data) => {
-      console.log(data)
       userDetailsModel.findOneAndUpdate({
           userrefid: user._id
         }, {
@@ -184,32 +186,6 @@ router.get('/manageBands/:id/addMember/search', (req, res) => {
         user
       })
     })
-
-
-
-  // bandModel.findByIdAndUpdate(
-  //         bandId
-  //     , {
-  //         $push: {
-  //             bandstructure: {
-  //                 name,
-  //                 profileId,
-  //                 role
-  //             }
-  //         }
-  //     })
-  //     .then(() => {
-  //         userDetailsModel.findOneAndUpdate({
-  //                 userrefid: profileId
-  //             }, {
-  //                 $push: {
-  //                     bandurllinks: bandId
-  //                 }
-  //             })
-  //             .then(() => {
-  //                 res.redirect(`/bandEdit/${bandId}`)
-  //             })
-  //     })
 })
 
 router.get("/manageBands/:bandId/addMember/:userId", (req, res) => {

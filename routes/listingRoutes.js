@@ -36,18 +36,14 @@ router.get("/searchMusiciansResults", (req, res, next) => {
   }
   
   userModel.find(searchParams).then((results) => {
-    console.log(results)
     let listedResults = []
     for (let elem in results){
       if (results[elem].listed){
         listedResults.push(results[elem])
       }
     }
-    console.log(listedResults)
     res.render("listings/searchMusiciansResults", { listedResults , loggedInUser, allCountriesSearch, searchGenreList, searchRoleList});
   });
-  
-  //res.send(req.query)
 });
 
 router.get("/bandListings", (req, res) => {
@@ -66,9 +62,6 @@ router.get("/searchBandsResults", (req, res, next) => {
   }
   let query = req.query;
   let searchParams = {};
-  // {genre: "Rock", mainrole: "Vocals", city:""}
-  // {key: ubndefined}
-  console.log(searchParams)
   for (let key in query) {
     if (query[key]) {
       searchParams[key] = query[key];
