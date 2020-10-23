@@ -1,21 +1,22 @@
-<div>Profile page of {{userProfile.username}}</div>
-<div class="dashboard-cont">
+<div class="dashboard-cont" id="container">
   <div>
-    <img style="width: 100px" src={{userProfile.img}} alt="">
-    <div>
-      <h2>Username:{{userProfile.username}}</h2>
+    <div class="dash-top">
+      
+      <img style="width: 100px" src={{userProfile.img}} alt="">
+     
+      <div>
+        <h2>Username: {{userProfile.username}}</h2>
+        <h4>About Me: </h4>
+        <p>{{userProfile.description}}</p>
+      </div>
     </div>
     <div>
-      <h4>About Me:</h4>
-      <p>{{userProfile.description}}</p>
+      <h4>Main role: </h4> {{userProfile.mainRole}}
+      <h4>Other roles: </h4> {{detailsData.subRole}}
     </div>
     <div>
-      <h4>Main role:</h4> {{userProfile.mainRole}}
-      <h4>Other roles:</h4> {{detailsData.subRole}}
-    </div>
-    <div>
-      <h4>Main genre:</h4> {{userProfile.mainGenre}}
-      <h4>Other genres:</h4> {{detailsData.subGenre}}
+      <h4>Main genre: </h4> {{userProfile.mainGenre}}
+      <h4>Other genres: </h4> {{detailsData.subGenre}}
     </div>
     <div>
       <h3>{{userProfile.username}} is a member of these bands</h3>

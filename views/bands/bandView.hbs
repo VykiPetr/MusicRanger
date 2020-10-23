@@ -1,14 +1,14 @@
-<div>Profile page of {{bandProfile.bandName}}</div>
-<div class="dashboard-cont">
+
+<div class="dashboard-cont" id="container">
     <div>
         <img style="width: 100px" src={{bandProfile.img}} alt="">
         <div>
-            <h2>Band Name:{{bandProfile.bandName}}</h2>
-            <h5>About Us</h5>
+            <h2>Band Name: {{bandProfile.bandName}}</h2>
+            <h5>About Us </h5>
             <p>{{bandProfile.description}}</p>
         </div>
         <div>
-            <h3>Our members</h3>
+            <h3>Our members </h3>
             {{#each bandProfile.bandstructure}}
             <div>
                 <a href="/musicianProfile/{{this.profileId}}">{{this.name}}</a> Who does {{this.role}}
@@ -16,8 +16,8 @@
             {{/each}}
         </div>
         <div>
-            <h4>Main genre</h4> {{bandProfile.mainGenre}}
-            <h4>Other genres</h4> {{bandProfile.subGenre}}
+            <h4>Main genre </h4> {{bandProfile.mainGenre}}
+            <h4>Other genres </h4> {{bandProfile.subGenre}}
         </div>
 
         <div>
@@ -25,7 +25,7 @@
             Country: {{bandProfile.country}}
             City: {{bandProfile.city}}
         </div>
-        <h4>We are looking for</h4>
+        <h4>We are looking for </h4>
         {{bandProfile.bandlookingfor}}
         <div>
 

@@ -87,6 +87,7 @@ footer {
   width: 250px; }
 
 #container {
+  margin: 15px;
   padding: 15px; }
 
 .dashboard-cont {
