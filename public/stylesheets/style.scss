@@ -5,6 +5,7 @@
 // #d32d38
 
 body {
+  background-image: url("../images/MRlogoFavicon.png");
   background-color: #fcfcfc;
   margin: 0%;
   padding: 0px;
@@ -113,6 +114,9 @@ footer {
 }
 
 .dashboard-cont{
+  
+  width: 65%;
+  background-color: #fcfcfc;
   height: 100%;
   display: flex;
   flex-direction: row;

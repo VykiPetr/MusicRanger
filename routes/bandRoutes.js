@@ -20,7 +20,7 @@ router.get('/managebands', (req, res) => {
     })
     .populate('bandurllinks')
     .then((userDetailData) => {
-      console.log(userDetailData)
+      console.log(userDetailData) 
       let bands = userDetailData.bandurllinks
       res.render('bands/manageBands.hbs', {
         userDetailData,
