@@ -17,7 +17,6 @@ router.get("/dashboard", (req, res) => {
   userDetailsModel
     .findOne({ userrefid: loggedInUser._id })
     .then((detailsData) => {
-      console.log(loggedInUser, detailsData);
       res.render("profiles/dashboard", { loggedInUser, detailsData });
     })
     .catch((err) =>
@@ -39,11 +38,9 @@ router.get("/updateProfile", (req, res) => {
       userDetailsModel
         .findOne({ userrefid: userId })
         .then((detailsData) => {
-          console.log("details model data: ", detailsData);
           res.render("profiles/updateProfile", { userDataMain, detailsData, allCountries, mainRoleList, mainGenreList });
         })
         .catch((err) =>
-          //console.log("error in updateProfile userDetailsModel.findOne ", err)
           res.redirect('/updateProfile')
         );
     })
@@ -102,15 +99,10 @@ router.post("/updateProfile", (req, res) => {
           req.session.loggedInUser = userData;
           res.redirect("/dashboard");
         })
-        .catch((err) =>
-          //console.log(
-            //"error in post update profile detaismodel findby id, ",
-            //err)
-          
+        .catch((err) => 
           res.redirect('/updateProfile')
         );
     });
-  // console.log(req.body)
 });
 
 router.get("/musicianProfile/:id", (req, res) => {

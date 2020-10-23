@@ -1,44 +1,20 @@
-{{!-- <form method="POST" action="/manageBands/{{bandId}}/addMember">
-    <label>Mebmer's name</label>
-    <input name="name" type="text">
-
-    <label>Link to their profile</label>
-    <input name="profileId" type="text">
-
-    <label>Their role</label>
-    <input name="role" type="text">
-    
-    <button type="submit">Add</button>
-</form> --}}
-
 <div>
     <form action="/manageBands/{{bandId}}/addMember/search" method="GET">
-
         <label for="">User name</label>
         <input type="text" name="username" id="">
-
         <button type="submit">SEARCH</button>
     </form>
-
 </div>
 
-
 {{#each user}}
-
 <div>
     <img style="width: 50px" src={{this.img}} alt="">
-
     <a href="/showprofile/{{this._id}}">
         Username: {{this.username}}
     </a>
-
     Location: {{this.country}}
     Main role: {{this.mainRole}}
     Main genre: {{this.mainGenre}}
     <a href="/manageBands/{{bandId}}/addMember/{{this._id}}"><button>Add</button></a>
-
 </div>
-
-
-
 {{/each}}

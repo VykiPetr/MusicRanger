@@ -1,5 +1,10 @@
 const mongoose = require('mongoose')
 
+//set lists for the enum of country, genre and role.  Prevents changes being made to database by user.
+let {allCountries} = require('../lib/countriesList')
+let {mainGenreList} = require('../lib/mainGenreList')
+let {mainRoleList} = require('../lib/mainRoleList')
+
 const bandSchema = new mongoose.Schema({
   bandName: {
     required: true,
@@ -10,7 +15,7 @@ const bandSchema = new mongoose.Schema({
   description: String,
   country: {
     type: String,
-    // enum: allCountry
+    enum: [...allCountries]
   },
   city: String,
   bandstructure: [{
@@ -23,7 +28,7 @@ const bandSchema = new mongoose.Schema({
     },
     role: {
       type: String,
-      // enum: allRoles
+      enum: [...mainRoleList]
     }
   }, ],
   bandlookingfor: [{
@@ -32,7 +37,7 @@ const bandSchema = new mongoose.Schema({
   }],
   mainGenre: {
     type: String,
-    // enum: allRoles
+    enum: [...mainGenreList]
   },
   subGenre: String,
 })

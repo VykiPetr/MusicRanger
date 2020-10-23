@@ -17,7 +17,7 @@
         <option value="{{this}}">{{this}}</option>
         {{/each}}
     </select>
-    {{!--<input name="mainGenre" type="text" placeholder="Punk" value="{{userDataMain.mainGenre}}"> --}}
+    
 
     <label>Other genres</label>
     <input name="subGenre" type="text" placeholder="Anything else" value="{{detailsData.subGenre}}">
@@ -65,7 +65,7 @@
 
     <label>List or unlist yourself from the listings</label>
     <input name="listed" type="checkbox" {{#if userDataMain.listed}}checked{{else}}unchecked{{/if}}>
-    {{!-- {{#if (userDataMain.listed)}}unchecked{{else}}checked{{/if}} --}}
+
     <button type="submit">Update</button>
 </form>
 </div>

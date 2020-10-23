@@ -1,5 +1,9 @@
 const mongoose = require('mongoose')
+
+//set lists for the enum of country, genre and role.  Prevents changes being made to database by user.
 let {allCountries} = require('../lib/countriesList')
+let {mainGenreList} = require('../lib/mainGenreList')
+let {mainRoleList} = require('../lib/mainRoleList')
 
 const userSchema = new mongoose.Schema(
     {
@@ -24,11 +28,11 @@ const userSchema = new mongoose.Schema(
 		},
 	mainGenre: {
 		type: String,
-		// enum: allGenre,
+		enum: [...mainGenreList],
 		},
 	mainRole: {
 		type: String,
-		// enum: allRoles,
+		enum: [...mainRoleList],
 		},
     listed: false
     })
